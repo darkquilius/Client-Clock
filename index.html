@@ -1,11 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
     <title>Client Clock</title>
 </head>
+
 <body>
-    
+    <header class="row">
+
+        <div class="col-md-12">
+
+            <h1 id="header">Client Clock</h1>
+
+        </div>
+
+    </header>
+
+    <div class="container">
+        <div class="row">
+
+            <!-- Client/project add -->
+            <section class="card-header" id="addClient">
+
+                <input type="text" placeholder="Add client or project">
+                <button>Add <i class="fa fa-user-plus"></i></button>
+
+                <br>
+                <br>
+
+                <ul>
+                    <ol>
+                        Example Client
+                    </ol>
+                    <ol>
+                        Example Client
+                    </ol>
+                </ul>
+
+            </section>
+
+            <section class="card-header" id="timerBox">
+
+                <!-- FIX ME doesn't have menu pop up -->
+                <!-- Client sorting button -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Client/Project List
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">CLIENT 1</a>
+                        <a class="dropdown-item" href="#">CLIENT 2</a>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <!-- Start/stop buttons -->
+                <button id="startBtn">Start</button>
+                <button id="stopBtn">Stop</button>
+
+                <br>
+                <br>
+
+                <div id="startDate">Start date: 4/8/2020</div>
+                <div id="startTime">Start time: 4:30PM</div>
+                <br>
+                <div id="endDate">End date: 4/8/2020</div>
+                <div id="endTime">End time: 5:30pm</div>
+                <br>
+                <div id="totalTime">Total time: 1 hour</div>
+            </section>
+
+            <section class="card-body" id="result">
+                <!-- FIX ME doesn't have menu pop up -->
+                <!-- Filter dropdown menu -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Client/Project List
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">CLIENT 1</a>
+                        <a class="dropdown-item" href="#">CLIENT 2</a>
+                    </div>
+
+                    <br>
+
+                    <div id="currentDay">
+                        <br>
+                        <h3>Today (April 8, 2020)</h3>
+                        <table>
+                            <thead>
+                                <th scope="col">Client Name</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Charges</th>
+                                <th scope="col">Clock-time</th>
+
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+
+            </section>
+
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
