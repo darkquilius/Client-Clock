@@ -37,6 +37,7 @@
                 <br>
 
                 <ul>
+                    <!-- Delete Examples -->
                     <ol>
                         Example Client
                     </ol>
@@ -54,7 +55,7 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Client/Project List
+                        Client/Project Select
                     </button>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -88,32 +89,53 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Client/Project List
+                        Client/Project Filter
                     </button>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">CLIENT 1</a>
                         <a class="dropdown-item" href="#">CLIENT 2</a>
                     </div>
-
+                </div>
                     <br>
 
-                    <div id="currentDay">
-                        <br>
-                        <h3>Today (April 8, 2020)</h3>
-                        <table>
+                    <div class = "container" id="currentDay">
+                        <table class="table">
                             <thead>
-                                <th scope="col">Client Name</th>
+                              <tr>
+                                  <!-- Optional: can delete column names (leave scope) -->
+                                <th scope="col">Client/Project</th>
+                                <th scope="col">Hours</th>
+                                <th scope="col">Cost</th>
                                 <th scope="col">Time</th>
-                                <th scope="col">Charges</th>
-                                <th scope="col">Clock-time</th>
-
+                              </tr>
                             </thead>
-                        </table>
-                    </div>
-                </div>
 
+                            <tbody>
+                                <!-- Clear code! Example only -->
+                              <tr>
+                                <td>Example Client</td>
+                                <td>1 hour 34 minutes</td>
+                                <td>$1,234.56</td>
+                                <td>4:31PM - 5:34PM</td>
+                              </tr>
 
+                              <tr>
+                                  <td>Example Client 2</td>
+                                  <td>36 minutes</td>
+                                  <td>$789.00</td>
+                                  <td>2:45PM - 3:56PM</td>
+                              </tr>
+                              
+                              <tr>
+                                  <td>Total:</td>
+                                  <td>2 hours 10 minutes</td>
+                                  <td>$2,023.56</td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                        </div>
             </section>
 
         </div>
