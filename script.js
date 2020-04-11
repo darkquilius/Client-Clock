@@ -1,4 +1,4 @@
-var h1 = document.getElementsByTagName('h2')[0],
+var h1 = document.getElementById("clock"),
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
     clear = document.getElementById('clear'),
@@ -6,6 +6,8 @@ var h1 = document.getElementsByTagName('h2')[0],
     minutes = 0,
     hours = 0,
     t;
+
+debugger;
 
 function add() {
     seconds++;
@@ -27,7 +29,7 @@ function timer() {
     t = setTimeout(add, 1000);
 }
 
-calcTotalTime()
+
 
 /* Start button */
 start.addEventListener("click", function() {
