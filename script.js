@@ -54,5 +54,3 @@ clear.onclick = function() {
     hours = 0;
     clearTimeout(t)
 }
-
-// Git is making me mad as always
