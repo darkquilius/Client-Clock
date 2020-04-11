@@ -8,7 +8,7 @@
     <!-- <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css" />
 
     <!-- Connie's test comment -->
@@ -22,7 +22,7 @@
 
         <div class="col-md-12">
 
-            <h1 id="header">Client Clock</h1>
+            <h1 style="text-align: center" id="header">Client Clock</h1>
             <!-- eric comment -->
         </div>
 
@@ -54,11 +54,14 @@
                 <!-- Start/stop buttons -->
 
                 <h2 id="clock"><time>00:00:00</time></h2>
-                <button id="start">START</button>
-                <button id="stop">STOP</button>
-                <button id="clear">RESET</button>
+                <button class="btn-success" id="start">START</button>
+                <button class="btn-danger" id="stop">STOP</button>
+                <button class="btn-primary" id="clear">RESET</button>
                 <br>
                 <br>
+                <div id="timestampSlot">
+
+                </div>
 
 
             </section>
@@ -125,7 +128,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <script src="script.js"></script>
 </body>
 
