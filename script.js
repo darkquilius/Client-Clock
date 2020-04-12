@@ -106,5 +106,6 @@ $(document).on("keypress", "input", function(e) {
         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
         $("#currentClient").text(inputVal);
         $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
+        $("input").val("");
     }
 });
