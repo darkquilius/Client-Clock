@@ -2,8 +2,11 @@
 
 ## Description
 
-Time for your time to start making cents.
-Application is a system that will track the amount of time spent with specific clients or projects then use that information to create a billing page with hourly cost, total time, and total cost for the work done.
+*Time for your time to start making cents.*
+
+This application is a system that will track the amount of time spent with specific clients or projects then use that information to create a billing page with hourly cost, total time, and total cost for the work done.
+
+The live page can be viewed here: https://kseredick95.github.io/Code-wizards/
 
 
 ## User Story
@@ -17,7 +20,7 @@ SO THAT I can verify the timing and costs.
 ```
 
 
-## Wireframe and Sketch
+## Functionality
 
 ```
 GIVEN a dashboard with start/stop buttons, an input and calculate button
@@ -30,5 +33,21 @@ THEN My time, date and client information is saved and appended to a list.
 WHEN I press calculate
 THEN I am presented with a well-laid out summary of client name, my total time, hourly billing cost, and total cost.
 ```
-## APIs
 
+## Wireframe & Sketch
+
+![Client Clock Wireframe](image/group_project_1_wireframes-wireframe.jpg)
+
+## Technologies
+
+* Bootstrap
+* Moment JS
+* JQuery
+
+## Team Members
+
+* Andrew Reeves
+* Connie Tran
+* Eric Jorgensen
+* Karolyn Seredick
+* Logan Hemphill
