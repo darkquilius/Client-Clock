@@ -38,7 +38,8 @@ function timer() {
 start.addEventListener("click", function () {
     timer();
 
-    $("#timestampSlot").append(`<p>Client: ${$("#clientDropdown a:selected")}</p>
+    var currentClient = $("#currentClient").text();
+    $("#timestampSlot").append(`<p>Client: ${currentClient}</p>
     <br>`);
 
     var timestamp = moment().format("L, h:mm:ss");
@@ -60,8 +61,9 @@ stop.addEventListener("click", function () {
 /* ON SAVE */
 
 /* Clear/Reset/Save button */
-save.onclick = function() {
+save.onclick = function () {
     calcTotalTime();
+    createEntry();
     populateTable();
     h1.textContent = "00:00:00";
     seconds = 0;
