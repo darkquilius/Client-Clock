@@ -46,8 +46,6 @@ stop.addEventListener("click", function() {
     var timestamp = moment().format("L HH:mm:ss");
     $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p>
     <br>`)
-    $("#timestampSlot").append(`<p>Total Time: ${hours} hours ${minutes} minutes</p>
-    <br>`)
 })
 
 /* Clear button */
@@ -100,6 +98,7 @@ $(document).on("keypress", "input", function(e) {
     if (e.which == 13) {
         var inputVal = $(this).val();
         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-        $("#currentClient").text(inputVal)
+        $("#currentClient").text(inputVal);
+        $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
     }
 });
