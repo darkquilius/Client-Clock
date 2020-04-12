@@ -6,6 +6,8 @@ var h1 = document.getElementById("clock"),
     minutes = 0,
     hours = 0,
     t;
+allEntries = [];
+entry = {};
 
 
 /* TIMER */
@@ -36,7 +38,8 @@ function timer() {
 start.addEventListener("click", function() {
     timer();
 
-    $("#timestampSlot").append(`<p>Client: ${$("#clientDropdown a:selected")}</p>
+    var currentClient = $("#currentClient").text();
+    $("#timestampSlot").append(`<p>Client: ${currentClient}</p>
     <br>`);
 
     var timestamp = moment().format("L, h:mm:ss");
@@ -54,9 +57,13 @@ stop.addEventListener("click", function() {
     <br>`)
 })
 
+
+/* ON SAVE */
+
 /* Clear/Reset/Save button */
 save.onclick = function() {
     calcTotalTime();
+    createEntry();
     populateTable();
     h1.textContent = "00:00:00";
     seconds = 0;
@@ -64,6 +71,47 @@ save.onclick = function() {
     hours = 0;
     clearTimeout(t);
     $("#timestampSlot").empty();
+}
+
+
+// Sets local storage and parses time for table. local storage to be used in recal of client time
+function calcTotalTime() {
+    timeToSeconds();
+    var clientTime = JSON.stringify(seconds);
+    // localStorage.setItem(clientName, clientTime);
+    console.log(localStorage.getItem("client 1"));
+    secondsToTime();
+}
+
+/* 
+
+https://stackoverflow.com/questions/17684201/create-html-table-from-javascript-object/17684427
+
+Example:
+
+var allEntries = 
+[
+    {
+        "client": "Connie",
+        "hours": "1.2",
+        "cost": "1233.23"
+        "startTime": "12385734"
+        "stopTime": "12385737"
+     },
+    {
+        "client": "Andrew",
+        "hours": "0.3",
+        "cost": "346.23"
+        "startTime": "12385723"
+        "stopTime": "12385767"
+     } 
+]
+
+*/
+
+function createEntry() {
+
+
 }
 
 
@@ -84,24 +132,3 @@ function secondsToTime() {
     hours = Math.floor(baseNum / 60 / 60);
     minutes = Math.floor((baseNum / 60) - (hours * 60));
 }
-
-// Sets local storage and parses time for table. local storage to be used in recal of client time
-function calcTotalTime() {
-    timeToSeconds();
-    var clientTime = JSON.stringify(seconds)
-    // localStorage.setItem(clientName, clientTime);
-    console.log(localStorage.getItem("client 1"));
-    secondsToTime();
-}
-
-
-$(document).on("keypress", "input", function(e) {
-    if (e.which == 13) {
-        var inputVal = $(this).val();
-        // Adds to client dropdown
-        $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-        $("#currentClient").text(inputVal);
-        // Adds to client filter
-        $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-    }
-});
