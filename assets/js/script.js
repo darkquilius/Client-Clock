@@ -38,8 +38,7 @@ function timer() {
 start.addEventListener("click", function () {
     timer();
 
-    var currentClient = $("#currentClient").text();
-    $("#timestampSlot").append(`<p>Client: ${currentClient}</p>
+    $("#timestampSlot").append(`<p>Client: ${$("#clientDropdown a:selected")}</p>
     <br>`);
 
     var timestamp = moment().format("L, h:mm:ss");
@@ -61,9 +60,8 @@ stop.addEventListener("click", function () {
 /* ON SAVE */
 
 /* Clear/Reset/Save button */
-save.onclick = function () {
+save.onclick = function() {
     calcTotalTime();
-    createEntry();
     populateTable();
     h1.textContent = "00:00:00";
     seconds = 0;
@@ -152,3 +150,14 @@ $("#printBtn").on("click", function () {
     window.print();
 })
 // Add Button and function
+
+$(document).on("keypress", "input", function(e) {
+    if (e.which == 13) {
+        var inputVal = $(this).val();
+        // Adds to client dropdown
+        $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
+        $("#currentClient").text(inputVal);
+        // Adds to client filter
+        $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
+    }
+});
