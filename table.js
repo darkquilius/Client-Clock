@@ -3,8 +3,8 @@
 function populateTable() {
     var newRow = $("tbody").append(`<tr></tr>`);
 
-    var clientName = "client 1";
-    newRow.append(`<td>${clientName}</td>`);
+    var currentClient = $("#currentClient").text();
+    newRow.append(`<td>${currentClient}</td>`);
 
     newRow.append(`<td>${hours} hours ${minutes} minutes</td>`);
     
