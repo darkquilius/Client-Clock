@@ -8,6 +8,8 @@ var h1 = document.getElementById("clock"),
     t;
 
 
+/* TIMER */
+/* Add seconds to timer to make it run */
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -29,7 +31,7 @@ function timer() {
 }
 
 
-
+/* BUTTONS */
 /* Start button */
 start.addEventListener("click", function() {
     timer();
@@ -48,7 +50,7 @@ stop.addEventListener("click", function() {
     <br>`)
 })
 
-/* Clear button */
+/* Clear/Reset/Save button */
 clear.onclick = function() {
     calcTotalTime()
     populateTable()
@@ -61,8 +63,9 @@ clear.onclick = function() {
 }
 
 
-var clientName = "client 1"
-    // Easy storing of seconds
+/* CONVERSION OF TIME */
+
+// Easy storing of seconds
 function timeToSeconds() {
     minutes = (hours * 60) + minutes;
     hours = 0;
@@ -80,7 +83,7 @@ function secondsToTime() {
 
 // Sets local storage and parses time for table. local storage to be used in recal of client time
 function calcTotalTime() {
-    timeToSeconds()
+    timeToSeconds();
     var clientTime = JSON.stringify(seconds)
     localStorage.setItem(clientName, clientTime)
     console.log(localStorage.getItem("client 1"));
@@ -88,6 +91,9 @@ function calcTotalTime() {
 }
 
 // Populates total time spent table
+
+var clientName = "client 1"
+
 function populateTable() {
     var newRow = $("tbody").append(`<tr></tr>`)
     newRow.append(`<td>${clientName}</td>`)
