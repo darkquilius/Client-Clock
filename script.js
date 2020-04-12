@@ -93,5 +93,3 @@ function calcTotalTime() {
     console.log(localStorage.getItem("client 1"));
     secondsToTime();
 }
-
-
