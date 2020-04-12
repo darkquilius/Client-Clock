@@ -1,7 +1,7 @@
 var h1 = document.getElementById("clock"),
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
-    clear = document.getElementById('clear'),
+    save = document.getElementById('save'),
     seconds = 0,
     minutes = 0,
     hours = 0,
@@ -35,7 +35,11 @@ function timer() {
 /* Start button */
 start.addEventListener("click", function() {
     timer();
-    var timestamp = moment().format("L HH:mm:ss");
+
+    $("#timestampSlot").append(`<p>Client: ${$("#clientDropdown a:selected")}</p>
+    <br>`);
+
+    var timestamp = moment().format("L, h:mm:ss");
     $("#timestampSlot").append(`<p>Start Timestamp: ${timestamp}</p>
         <br>`)
 })
@@ -44,16 +48,16 @@ start.addEventListener("click", function() {
 /* Stop button */
 stop.addEventListener("click", function() {
     clearTimeout(t);
-    calcTotalTime()
-    var timestamp = moment().format("L HH:mm:ss");
+    calcTotalTime();
+    var timestamp = moment().format("L, h:mm:ss");
     $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p>
     <br>`)
 })
 
 /* Clear/Reset/Save button */
-clear.onclick = function() {
-    calcTotalTime()
-    populateTable()
+save.onclick = function() {
+    calcTotalTime();
+    populateTable();
     h1.textContent = "00:00:00";
     seconds = 0;
     minutes = 0;
@@ -85,26 +89,19 @@ function secondsToTime() {
 function calcTotalTime() {
     timeToSeconds();
     var clientTime = JSON.stringify(seconds)
-    localStorage.setItem(clientName, clientTime)
+    // localStorage.setItem(clientName, clientTime);
     console.log(localStorage.getItem("client 1"));
     secondsToTime();
 }
 
-// Populates total time spent table
-
-var clientName = "client 1"
-
-function populateTable() {
-    var newRow = $("tbody").append(`<tr></tr>`)
-    newRow.append(`<td>${clientName}</td>`)
-    newRow.append(`<td>${hours} hours ${minutes} minutes</td>`)
-}
 
 $(document).on("keypress", "input", function(e) {
     if (e.which == 13) {
         var inputVal = $(this).val();
+        // Adds to client dropdown
         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
         $("#currentClient").text(inputVal);
+        // Adds to client filter
         $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
         $("input").val("");
     }
