@@ -4,27 +4,29 @@ var clientSaved = [];
 
 //Populates prior client names
 
-//FIX ME!!
+
 priorClient();
 
 function priorClient() {
 
     var prev = localStorage.getItem("clientName");
 
-    debugger
-    clientSaved.forEach(client => {
+    if (prev == null) {
+        prev = "Example"
+        $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${prev}</a>`);
+        $("#currentClient").text(prev);
+    }
+    else {
+        clientSaved = JSON.parse(prev)
 
-        prev = JSON.parse(prev)
+        clientSaved.forEach(name => {
 
-        console.log(prev)
+            $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${name}</a>`);
+            $("#currentClient").text(name);
+        });
+    };
 
-        //Adds to client dropdown
-        $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
-        $("#currentClient").text(client);
-        // Adds to client filter
-        $("#clientList").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
-        $("input").val("");
-    })
+    console.log(prev)
 }
 
 
@@ -43,7 +45,6 @@ $(document).on("keypress", "input", function (e) {
 $(document).on('click', '.dropdown-menu a', function () {
     $("#currentClient").text(this.innerText);
 });
-
 
 
 
@@ -81,8 +82,8 @@ function addName(inputVal) {
     $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
     // Adds to client filter
-    $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-    $("input").val("");
+    // $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
+    // $("input").val("");
 
 
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
