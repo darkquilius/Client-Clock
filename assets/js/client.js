@@ -5,6 +5,19 @@ var clientSaved = [];
 //Populates prior client names
 priorClient();
 
+function priorClient() {
+    var prev = localStorage.getItem("clientName");
+    clientSaved = JSON.parse(prev);
+
+    clientSaved.forEach(client => {
+        //Adds to client dropdown
+        $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
+        $("#currentClient").text(client);
+        // Adds to client filter
+        $("#clientList").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
+        $("input").val("");
+    });
+
 // When client is entered into input, add to dropdown
 $(document).on("keypress", "input", function (e) {
     if (e.which == 13) {
@@ -20,19 +33,6 @@ $(document).on("keypress", "input", function (e) {
 $(document).on('click', '.dropdown-menu a', function () {
     $("#currentClient").text(this.innerText);
 });
-
-function priorClient() {
-    var prev = localStorage.getItem("clientName");
-    clientSaved = JSON.parse(prev);
-
-    clientSaved.forEach(client => {
-        //Adds to client dropdown
-        $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
-        $("#currentClient").text(client);
-        // Adds to client filter
-        $("#clientList").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
-        $("input").val("");
-    });
 
     console.log(clientSaved)
 }
