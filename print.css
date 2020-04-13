@@ -6,8 +6,12 @@
     display: none;
 }
 
-h1  {
+#inv  {
     text-align: center;
     background-color: rgb(117, 117, 117);
     border: 3px solid black;
+}
+
+#printBtn   {
+    display: none;
 }

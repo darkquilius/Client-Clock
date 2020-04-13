@@ -133,4 +133,8 @@ function secondsToTime() {
     minutes = Math.floor((baseNum / 60) - (hours * 60));
 }
 
-
+$("#printBtn").on("click", function () {
+    var date = moment().format('ll');
+    document.getElementById('inv').innerHTML = "INVOICE - " + date;
+    window.print();
+})
