@@ -10,8 +10,8 @@ border-bottom: solid;
     display: none;
 }
 
-p   {
-    /* display: none; */
+.noDisp   {
+    display: none;
 }
 
 #printBtn   {
