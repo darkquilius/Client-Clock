@@ -11,7 +11,7 @@ border-bottom: solid;
 }
 
 p   {
-    display: none;
+    /* display: none; */
 }
 
 #printBtn   {
