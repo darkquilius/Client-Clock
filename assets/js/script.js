@@ -5,9 +5,11 @@ var h1 = document.getElementById("clock"),
     seconds = 0,
     minutes = 0,
     hours = 0,
-    t,
-    date = moment().format('ll');
+    t;
+
+//
 allEntries = [];
+//
 entry = {};
 
 
@@ -38,14 +40,20 @@ function timer() {
 /* Start button */
 start.addEventListener("click", function() {
     timer();
-
-    var currentClient = $("#currentClient").text();
+    //added val not text
+    var currentClient = $("#currentClient").val();
     $("#timestampSlot").append(`<p>Client: ${currentClient}</p>
     <br>`);
 
     var timestamp = moment().format("L, h:mm:ss");
     $("#timestampSlot").append(`<p>Start Timestamp: ${timestamp}</p>
-        <br>`)
+        <br>`);
+
+    // Create an object for time entry
+    var entry = {};
+    entry.client = currentClientText;
+    entry.startTime = moment().valueOf();
+    console.log(entry);
 })
 
 
@@ -54,17 +62,18 @@ stop.addEventListener("click", function() {
     clearTimeout(t);
     calcTotalTime();
     var timestamp = moment().format("L, h:mm:ss");
-    $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p>
-    <br>`)
+    $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p><br>`);
+
+    // Add stopTime property to entry object
+    entry.stopTime = moment().valueOf();
+    console.log(entry);
 })
-
-
-/* ON SAVE */
 
 /* Clear/Reset/Save button */
 save.onclick = function() {
     calcTotalTime();
-    createEntry();
+    //THIS WAS ADDED
+    // createEntry();
     populateTable();
     h1.textContent = "00:00:00";
     seconds = 0;
@@ -76,20 +85,13 @@ save.onclick = function() {
 
 
 // Sets local storage and parses time for table. local storage to be used in recal of client time
-function calcTotalTime() {
-    timeToSeconds();
-    var clientTime = JSON.stringify(seconds);
-    // localStorage.setItem(clientName, clientTime);
-    console.log(localStorage.getItem("client 1"));
-    secondsToTime();
-}
 
+
+
+//create table is not working!!!
 /* 
-
 https://stackoverflow.com/questions/17684201/create-html-table-from-javascript-object/17684427
-
 Example:
-
 var allEntries = 
 [
     {
@@ -107,16 +109,15 @@ var allEntries =
         "stopTime": "12385767"
      } 
 ]
-
 */
 
-function createEntry() {
+// function createEntry() {
 
 
-}
+// }
 
-
-/* CONVERSION OF TIME */
+clientName = $("#currentClient").val()
+    /* CONVERSION OF TIME */
 
 // Easy storing of seconds
 function timeToSeconds() {
@@ -128,14 +129,40 @@ function timeToSeconds() {
 
 // Returns seconds to legible time
 function secondsToTime() {
-    var baseNum = localStorage.getItem("client 1");
+    //NEED TO HAVE LOCALSTORAGE TO PULL BASENUM
+    var baseNum = localStorage.getItem(clientName);
     baseNum = parseInt(baseNum);
     hours = Math.floor(baseNum / 60 / 60);
     minutes = Math.floor((baseNum / 60) - (hours * 60));
 }
 
-$("#printBtn").on("click", function() {
-    var date = moment().format('ll');
-    document.getElementById('inv').innerHTML = "INVOICE - " + date;
-    window.print();
-})
+
+//MOVED TO GET TIME TO SECONDS SECONDS TO TIME AVAILABLE IN THIS FUNCTION
+
+function calcTotalTime() {
+    timeToSeconds();
+    var clientTime = JSON.stringify(seconds);
+    localStorage.setItem(clientName, clientTime)
+        // localStorage.setItem(clientName, clientTime);
+    console.log(localStorage.getItem("client 1"));
+    secondsToTime();
+}
+
+
+// Populates total time spent table
+function populateTable() {
+    var newRow = $("tbody").append(`<tr></tr>`)
+    newRow.append(`<td>${clientName}</td>`)
+    newRow.append(`<td>${hours} hours ${minutes} minutes</td>`)
+}
+
+// $(document).on("keydown", "input", function(e) {
+//     if (e.which == 13) {
+//         var inputVal = $(this).val();
+//         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
+//         $("#currentClient").text(inputVal);
+//         localStorage.setItem(JSON.stringify(inputVal), seconds)
+//DOUBLE ENTRY WEN NOT COMMENTED OUT, DOES NOT CHANGE DROPDOWN TEXT WEN ACTIVE
+// $("input").val("")
+// }
+// });
