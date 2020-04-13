@@ -6,7 +6,7 @@ var clientSaved = [];
 priorClient();
 
 // When client is entered into input, add to dropdown
-$(document).on("keypress", "input", function(e) {
+$(document).on("keypress", "input", function (e) {
     if (e.which == 13) {
         var inputVal = $(this).val();
 
@@ -17,7 +17,7 @@ $(document).on("keypress", "input", function(e) {
 });
 
 // When item in dropdown is clicked, set dropdown button to event.innerText
-$(document).on('click', '.dropdown-menu a', function() {
+$(document).on('click', '.dropdown-menu a', function () {
     $("#currentClient").text(this.innerText);
 });
 
