@@ -5,3 +5,11 @@ font-family: 'Lemon', cursive;
     border-bottom: solid;
     
 }
+
+h1  {
+    display: none;
+}
+
+p   {
+    display: none;
+}
