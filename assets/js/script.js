@@ -153,7 +153,7 @@ $("#printBtn").on("click", function () {
 })
 // Add Button and function
 
-$(document).on("keypress", "input", function(e) {
+$(document).on("keypress", "input", function (e) {
     if (e.which == 13) {
         var inputVal = $(this).val();
         // Adds to client dropdown
