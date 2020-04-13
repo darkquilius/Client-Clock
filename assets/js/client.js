@@ -3,27 +3,28 @@
 var clientSaved = [];
 
 //Populates prior client names
+
+//FIX ME!!
 priorClient();
 
 function priorClient() {
-    
+
     var prev = localStorage.getItem("clientName");
 
-        clientSaved.forEach(client => {
-            if (prev == null){
-                return;
-            }
-            else{
-                clientSaved = ["Example", JSON.parse(prev)];
-            
-                //Adds to client dropdown
-                $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
-                $("#currentClient").text(client);
-                // Adds to client filter
-                $("#clientList").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
-                $("input").val("");
-            }
-        });
+    debugger
+    clientSaved.forEach(client => {
+
+        prev = JSON.parse(prev)
+
+        console.log(prev)
+
+        //Adds to client dropdown
+        $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
+        $("#currentClient").text(client);
+        // Adds to client filter
+        $("#clientList").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
+        $("input").val("");
+    })
 }
 
 
@@ -43,7 +44,6 @@ $(document).on('click', '.dropdown-menu a', function () {
     $("#currentClient").text(this.innerText);
 });
 
-console.log(clientSaved)
 
 
 
