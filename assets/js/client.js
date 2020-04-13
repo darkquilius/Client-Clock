@@ -6,17 +6,26 @@ var clientSaved = [];
 priorClient();
 
 function priorClient() {
+    
     var prev = localStorage.getItem("clientName");
-    clientSaved = JSON.parse(prev);
 
-    clientSaved.forEach(client => {
-        //Adds to client dropdown
-        $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
-        $("#currentClient").text(client);
-        // Adds to client filter
-        $("#clientList").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
-        $("input").val("");
-    });
+        clientSaved.forEach(client => {
+            if (prev == null){
+                return;
+            }
+            else{
+                clientSaved = ["Example", JSON.parse(prev)];
+            
+                //Adds to client dropdown
+                $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
+                $("#currentClient").text(client);
+                // Adds to client filter
+                $("#clientList").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
+                $("input").val("");
+            }
+        });
+}
+
 
 // When client is entered into input, add to dropdown
 $(document).on("keypress", "input", function (e) {
@@ -34,8 +43,8 @@ $(document).on('click', '.dropdown-menu a', function () {
     $("#currentClient").text(this.innerText);
 });
 
-    console.log(clientSaved)
-}
+console.log(clientSaved)
+
 
 
 function dublicateCheck(inputVal) {
