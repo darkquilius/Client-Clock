@@ -8,6 +8,7 @@ var h1 = document.getElementById("clock"),
     t,
     date = moment().format('ll');
 allEntries = [];
+entry = {};
 
 
 /* TIMER */
@@ -35,59 +36,43 @@ function timer() {
 
 /* BUTTONS */
 /* Start button */
-start.addEventListener("click", function () {
+start.addEventListener("click", function() {
     timer();
 
-    var currentClientText = $("#currentClient").text();
-    $("#timestampSlot").append(`<p>Client: ${currentClientText}</p>
+    var currentClient = $("#currentClient").text();
+    $("#timestampSlot").append(`<p>Client: ${currentClient}</p>
     <br>`);
 
     var timestamp = moment().format("L, h:mm:ss");
     $("#timestampSlot").append(`<p>Start Timestamp: ${timestamp}</p>
-        <br>`);
-
-    // Create an object for time entry
-    var entry = {};
-    entry.client = currentClientText;
-    entry.startTime = moment().valueOf();
-    console.log(entry);
+        <br>`)
+})
 
 
-    /* Stop button */
-    stop.addEventListener("click", function () {
-        clearTimeout(t);
-        calcTotalTime();
-        var timestamp = moment().format("L, h:mm:ss");
-        $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p><br>`);
-
-        // Add stopTime property to entry object
-        entry.stopTime = moment().valueOf();
-        console.log(entry);
-
-    })
+/* Stop button */
+stop.addEventListener("click", function() {
+    clearTimeout(t);
+    calcTotalTime();
+    var timestamp = moment().format("L, h:mm:ss");
+    $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p>
+    <br>`)
+})
 
 
-    /* ON SAVE */
+/* ON SAVE */
 
-    /* Clear/Reset/Save button */
-    save.onclick = function () {
-        calcTotalTime();
-
-        // Add new entry object to allEntries array on Save
-        allEntries.push(entry);
-        console.log(allEntries);
-
-        populateTable();
-
-        h1.textContent = "00:00:00";
-        seconds = 0;
-        minutes = 0;
-        hours = 0;
-
-        clearTimeout(t);
-        $("#timestampSlot").empty();
-    }
-});
+/* Clear/Reset/Save button */
+save.onclick = function() {
+    calcTotalTime();
+    createEntry();
+    populateTable();
+    h1.textContent = "00:00:00";
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    clearTimeout(t);
+    $("#timestampSlot").empty();
+}
 
 
 // Sets local storage and parses time for table. local storage to be used in recal of client time
@@ -95,7 +80,7 @@ function calcTotalTime() {
     timeToSeconds();
     var clientTime = JSON.stringify(seconds);
     // localStorage.setItem(clientName, clientTime);
-    // console.log(localStorage.getItem("client 1"));
+    console.log(localStorage.getItem("client 1"));
     secondsToTime();
 }
 
@@ -149,25 +134,8 @@ function secondsToTime() {
     minutes = Math.floor((baseNum / 60) - (hours * 60));
 }
 
-$("#printBtn").on("click", function () {
+$("#printBtn").on("click", function() {
+    var date = moment().format('ll');
     document.getElementById('inv').innerHTML = "INVOICE - " + date;
     window.print();
 })
-
-span();
-
-function span(){
-    document.getElementById('spanRight').innerHTML = date;
-}
-// Add Button and function
-
-// $(document).on("keypress", "input", function (e) {
-//     if (e.which == 13) {
-//         var inputVal = $(this).val();
-//         // Adds to client dropdown
-//         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-//         $("#currentClient").text(inputVal);
-//         // Adds to client filter
-//         $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-//     }
-// });
