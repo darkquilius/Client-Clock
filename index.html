@@ -12,7 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Lemon&family=Permanent+Marker&display=swap" rel="stylesheet">
 
     <!-- CUSTOM STYLESHEETS -->
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" media="print" type="text/css" href="print.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="style.css" />
+    
 
     <!-- DOCUMENT -->
     <title>Client Clock</title>
@@ -28,6 +30,7 @@
     <br>
 
     <!-- MAIN BODY -->
+    <h1>INVOICE</h1>
     <div class="container">
         <div class="row">
 
@@ -65,7 +68,7 @@
             <section class="card-body" id="result">
 
                 <!-- Filter dropdown menu -->
-                <div class="dropdown">
+                <div id="resultDropdown" class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Client/Project Filter
                     </button>
@@ -81,7 +84,7 @@
                         <thead>
                             <tr class="table-active">
                                 <!-- Optional: can delete column names (leave scope) -->
-                                <th scope="col">Client/Project</th>
+                                <th scope="col">Client / Project</th>
                                 <th scope="col">Hours</th>
                                 <th scope="col">Cost</th>
                                 <th scope="col">Time</th>
@@ -117,6 +120,9 @@
 
         </div>
     </div>
+    <p><b>Thank You For Your Business!</b></p>
+    <br>
+    <p>Please submit payment within 30 days of recieving invoice</p>
 
 
     <!-- EXTERNAL SCRIPTS -->
