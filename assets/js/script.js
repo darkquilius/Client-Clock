@@ -40,6 +40,7 @@ function timer() {
 /* Start button */
 start.addEventListener("click", function() {
     timer();
+    // CURRENTCLIENT IS LITERALLY CLIENTNAME BUT LOCALLY DECLARED. WE CLD JUST USE CLIENT NAME
     //added val not text
     var currentClient = $("#currentClient").val();
     $("#timestampSlot").append(`<p>Client: ${currentClient}</p>
@@ -51,7 +52,7 @@ start.addEventListener("click", function() {
 
     // Create an object for time entry
     var entry = {};
-    entry.client = currentClientText;
+    entry.client = currentClient;
     entry.startTime = moment().valueOf();
     console.log(entry);
 })
@@ -85,9 +86,6 @@ save.onclick = function() {
 
 
 // Sets local storage and parses time for table. local storage to be used in recal of client time
-
-
-
 //create table is not working!!!
 /* 
 https://stackoverflow.com/questions/17684201/create-html-table-from-javascript-object/17684427
