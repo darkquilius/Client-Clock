@@ -34,6 +34,7 @@ function priorClient() {
 
 // When client is entered into input, add to dropdown
 $(document).on("keypress", "input", function (e) {
+    
     if (e.which == 13) {
         var inputVal = $(this).val();
 
