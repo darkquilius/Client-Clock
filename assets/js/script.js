@@ -5,7 +5,8 @@ var h1 = document.getElementById("clock"),
     seconds = 0,
     minutes = 0,
     hours = 0,
-    t;
+    t,
+    date = moment().format('ll');
 allEntries = [];
 
 
@@ -162,8 +163,13 @@ function calcTotalTime() {
 
 
 $("#printBtn").on("click", function () {
-    var date = moment().format('ll');
     document.getElementById('inv').innerHTML = "INVOICE - " + date;
     window.print();
 })
+
+span();
+
+function span(){
+    document.getElementById('spanRight').innerHTML = date;
+}
 // Add Button and function
