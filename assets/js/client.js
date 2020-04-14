@@ -2,8 +2,8 @@
 //Prior client name array
 var clientSaved = [];
 
-//Populates prior client names
 
+//Populates prior client names
 
 priorClient();
 
@@ -11,22 +11,24 @@ function priorClient() {
 
     var prev = localStorage.getItem("clientName");
 
+    console.log(prev)
+
     if (prev == null) {
         prev = "Example"
+
         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${prev}</a>`);
         $("#currentClient").text(prev);
     }
     else {
         clientSaved = JSON.parse(prev)
 
-        clientSaved.forEach(name => {
+        console.log(clientSaved)
 
-            $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${name}</a>`);
-            $("#currentClient").text(name);
+        clientSaved.forEach(client => {
+            $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
+            $("#currentClient").text(client);
         });
-    };
-
-    console.log(prev)
+    }
 }
 
 
@@ -49,22 +51,25 @@ $(document).on('click', '.dropdown-menu a', function() {
 });
 
 
-
 function dublicateCheck(inputVal) {
-    //clientSaved = localStorage.getItem(`clientName`);
+    //makes inputVal lowercase
     var lowerInput = inputVal.toLowerCase();
+
+    //duplicate counter
     var x = 0;
 
-
-    //Count of x increases with dublicate
     clientSaved.forEach(client => {
-        client = client.toLowerCase();
-        if (client == lowerInput) {
 
-            x = x + 1;
+        console.log(client)
+        //makes client names lowercase
+        var lowClient = client.toLowerCase();
+
+        if (lowClient == lowerInput) {
+            console.log("They're the same")
+            x += 1;
         }
         else {
-
+            console.log("They're different")
         }
     });
 
@@ -72,21 +77,18 @@ function dublicateCheck(inputVal) {
         addName(inputVal);
     }
     else {
-        return;
     }
-
 }
 
 function addName(inputVal) {
+    //Add to clientSaved array
     clientSaved.push(inputVal);
 
     //Adds to client dropdown
     $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
-    // Adds to client filter
-    // $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-    // $("input").val("");
 
-
+    console.log(clientSaved)
+    //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
 }
