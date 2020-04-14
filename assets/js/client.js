@@ -26,9 +26,12 @@ function priorClient() {
 
         console.log(clientSaved)
 
+        var index = 0;
         clientSaved.forEach(client => {
-            $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
+            $("#clientDropdown").prepend(`<a class="dropdown-item" index=${index} data-id=${index} href="#">${client}</a>`);
             $("#currentClient").text(client);
+
+            index++;
         });
     }
 }
@@ -95,6 +98,7 @@ function dublicateCheck(inputVal) {
 
     if (x == 0) {
         addName(inputVal);
+        createObject(inputVal);
     }
     else {
     }
@@ -108,7 +112,6 @@ function addName(inputVal) {
     $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
 
-    console.log(clientSaved)
     //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
     boogaBooga();
