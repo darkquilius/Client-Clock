@@ -148,19 +148,6 @@ function secondsToTime() {
     minutes = Math.floor((baseNum / 60) - (hours * 60));
 }
 
-
-// Sets local storage and parses time for table. local storage to be used in recal of client time
-function calcTotalTime() {
-    timeToSeconds();
-    var clientTime = JSON.stringify(seconds)
-    // localStorage.setItem(clientName, clientTime);
-    console.log(localStorage.getItem("client 1"));
-    secondsToTime();
-}
-
-// Update table with client name. Create object for time entry for table
-
-
 $("#printBtn").on("click", function () {
     var date = moment().format('ll');
     document.getElementById('inv').innerHTML = "INVOICE - " + date;
