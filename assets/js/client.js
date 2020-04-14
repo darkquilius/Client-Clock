@@ -90,3 +90,4 @@ function addName(inputVal) {
     //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
 }
+
