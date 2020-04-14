@@ -1,6 +1,9 @@
 /* Client Dropdown Functionality */
 //Prior client name array
 var clientSaved = [];
+const obj = {
+    client: []
+};
 
 
 //Populates prior client names
@@ -14,7 +17,7 @@ function priorClient() {
     console.log(prev)
 
     if (prev == null) {
-        prev = "Example"
+        prev = "Client Name"
 
         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${prev}</a>`);
         $("#currentClient").text(prev);
@@ -22,12 +25,13 @@ function priorClient() {
         clientSaved = JSON.parse(prev)
 
         console.log(clientSaved)
-        var index = 0
-        clientSaved.forEach(client => {
 
-            $("#clientDropdown").prepend(`<a class="dropdown-item" index=${index} href="#">${client}</a>`);
+        var index = 0;
+        clientSaved.forEach(client => {
+            $("#clientDropdown").prepend(`<a class="dropdown-item" index=${index} data-id=${index} href="#">${client}</a>`);
             $("#currentClient").text(client);
-            index++
+
+            index++;
         });
     }
 }
@@ -73,6 +77,7 @@ function dublicateCheck(inputVal) {
 
     if (x == 0) {
         addName(inputVal);
+        createObject(inputVal);
     } else {}
 }
 
@@ -81,11 +86,23 @@ function addName(inputVal) {
     clientSaved.push(inputVal);
 
     //Adds to client dropdown
-    $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
+    $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#"></a>`);
     $("#currentClient").text(inputVal);
-    $("input").val("");
 
-    console.log(clientSaved)
-        //Saves to Storage
+    //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
+}
+
+
+function createObject(inputVal) {
+
+    obj.client.push({
+        ID: inputVal,
+        startTime: 00,
+        stopTime: 00,
+        totalTime: 00,
+        cost: 00
+    })
+
+    localStorage.setItem("objectClient", JSON.stringify(obj))
 }
