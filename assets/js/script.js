@@ -8,6 +8,13 @@ var h1 = document.getElementById("clock"),
     t;
 allEntries = [];
 
+populateAllEntries()
+
+function populateAllEntries() {
+    var element = JSON.parse(localStorage.getItem("entriesArray"));
+    allEntries.push(element)
+}
+
 
 /* TIMER */
 /* Add seconds to timer to make it run */
@@ -37,7 +44,7 @@ function timer() {
 start.addEventListener("click", function() {
     timer();
 
-    var currentClientText = $("#currentClient").text();
+    var currentClientText = $("#currentClient").text()
     $("#timestampSlot").append(`<p>Client: ${currentClientText}</p>
     <br>`);
 
@@ -51,6 +58,14 @@ start.addEventListener("click", function() {
     entry.startTime = moment().valueOf();
     console.log(entry);
 
+    // //object{
+    //     name: AAAAAA
+    //     startTime: [this thingy, that thingy]
+    //     stopTime: [end thingy, ender thingy]
+    //     totalTime: time
+    // }
+
+
 
     /* Stop button */
     stop.addEventListener("click", function() {
@@ -61,6 +76,7 @@ start.addEventListener("click", function() {
 
         // Add stopTime property to entry object
         entry.stopTime = moment().valueOf();
+        entry.totalTime = seconds
         console.log(entry);
 
     })
@@ -75,6 +91,7 @@ start.addEventListener("click", function() {
         // Add new entry object to allEntries array on Save
         allEntries.push(entry);
         console.log(allEntries);
+        localStorage.setItem("entriesArray", JSON.stringify(allEntries))
 
         populateTable();
 
@@ -101,7 +118,7 @@ function timeToSeconds() {
 
 // Returns seconds to legible time
 function secondsToTime() {
-    var baseNum = localStorage.getItem(clientSaved[0]);
+    var baseNum = localStorage.getItem(JSON.stringify(clientSaved[0]));
     baseNum = parseInt(baseNum);
     hours = Math.floor(baseNum / 60 / 60);
     minutes = Math.floor((baseNum / 60) - (hours * 60));
@@ -112,7 +129,7 @@ function secondsToTime() {
 function calcTotalTime() {
     timeToSeconds();
     var clientTime = JSON.stringify(seconds)
-    localStorage.setItem(clientSaved[0], clientTime);
+    localStorage.setItem(JSON.stringify(clientSaved[0]), clientTime);
     secondsToTime();
     console.log(localStorage)
 }
@@ -125,12 +142,16 @@ function calcTotalTime() {
 //         const element = clientSaved[i];
 //         var baseNum = localStorage.getItem(clientSaved[i]);
 //         console.log(element);
-//         console.log(baseNum);
-//         if (element === client) {
-//             var newTime = baseNum + seconds;
-//             localStorage.setItem(element, JSON.stringify(newTime))
-//         }
-//     }
+//         console.log(baseNum);   
+//          timeToSeconds();
+//         var clientTime = JSON.stringify(seconds)
+//         localStorage.setItem(clientSaved[i], clientTime);
+//         secondsToTime();
+// if (element === client) {
+//     var newTime = baseNum + seconds;
+//     localStorage.setItem(element, JSON.stringify(newTime))
+// }
+// }
 // }
 
 // Update table with client name. Create object for time entry for table
