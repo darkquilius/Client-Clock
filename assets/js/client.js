@@ -26,14 +26,10 @@ function priorClient() {
 
         console.log(clientSaved)
 
-        var index = 0;
         clientSaved.forEach(client => {
-            $("#clientDropdown").prepend(`<a class="dropdown-item" index=${index} data-id=${index} href="#">${client}</a>`);
+            $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${client}</a>`);
             $("#currentClient").text(client);
-
-            index++;
         });
-        // boogaBooga()
     }
 }
 
@@ -82,26 +78,26 @@ function dublicateCheck(inputVal) {
     //duplicate counter
     var x = 0;
 
-
-
     clientSaved.forEach(client => {
 
         console.log(client)
-            //makes client names lowercase
+        //makes client names lowercase
         var lowClient = client.toLowerCase();
 
         if (lowClient == lowerInput) {
             console.log("They're the same")
             x += 1;
-        } else {
+        }
+        else {
             console.log("They're different")
         }
     });
 
     if (x == 0) {
         addName(inputVal);
-        createObject(inputVal);
-    } else {}
+    }
+    else {
+    }
 }
 
 function addName(inputVal) {
@@ -111,8 +107,8 @@ function addName(inputVal) {
     //Adds to client dropdown
     $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
-    $("input").val("")
 
+    console.log(clientSaved)
     //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
     boogaBooga();

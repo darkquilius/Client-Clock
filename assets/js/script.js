@@ -188,8 +188,17 @@ function span() {
 function repopArray() {
     var a = JSON.parse(localStorage.getItem("objectClient"));
 
+<<<<<<< HEAD
 }
 
 
 JSON.parse(localStorage.getItem("objectClient"))[0]
 
+=======
+$("#printBtn").on("click", function () {
+    var date = moment().format('ll');
+    document.getElementById('inv').innerHTML = "INVOICE - " + date;
+    window.print();
+})
+// Add Button and function
+>>>>>>> Fixing input
