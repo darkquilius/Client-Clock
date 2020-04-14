@@ -8,14 +8,6 @@ var h1 = document.getElementById("clock"),
     t;
 allEntries = [];
 
-populateAllEntries()
-
-function populateAllEntries() {
-    var element = JSON.parse(localStorage.getItem("entriesArray"));
-    allEntries.push(element)
-}
-
-
 /* TIMER */
 /* Add seconds to timer to make it run */
 function add() {
@@ -75,10 +67,6 @@ start.addEventListener("click", function() {
         $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p><br>`);
 
         // Add stopTime property to entry object
-        entry.stopTime = moment().valueOf();
-        entry.totalTime = seconds
-        console.log(entry);
-
     })
 
 
@@ -91,7 +79,7 @@ start.addEventListener("click", function() {
         // Add new entry object to allEntries array on Save
         allEntries.push(entry);
         console.log(allEntries);
-        localStorage.setItem("entriesArray", JSON.stringify(allEntries))
+        // localStorage.setItem("entriesArray", JSON.stringify(allEntries))
 
         populateTable();
 
