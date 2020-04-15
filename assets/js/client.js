@@ -1,9 +1,12 @@
 /* Client Dropdown Functionality */
 //Prior client name array
 var clientSaved = [];
+const obj = {
+    client: []
+};
+
 
 //Populates prior client names
-
 
 priorClient();
 
@@ -11,22 +14,27 @@ function priorClient() {
 
     var prev = localStorage.getItem("clientName");
 
+    console.log(prev)
+
     if (prev == null) {
-        prev = "Example"
+        prev = "Client Name"
+
         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${prev}</a>`);
         $("#currentClient").text(prev);
     }
     else {
         clientSaved = JSON.parse(prev)
 
-        clientSaved.forEach(name => {
+        console.log(clientSaved)
 
-            $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${name}</a>`);
-            $("#currentClient").text(name);
+        var index = 0;
+        clientSaved.forEach(client => {
+            $("#clientDropdown").prepend(`<a class="dropdown-item" index=${index} data-id=${index} href="#">${client}</a>`);
+            $("#currentClient").text(client);
+
+            index++;
         });
-    };
-
-    console.log(prev)
+    }
 }
 
 
@@ -47,44 +55,55 @@ $(document).on('click', '.dropdown-menu a', function () {
 });
 
 
-
 function dublicateCheck(inputVal) {
-    //clientSaved = localStorage.getItem(`clientName`);
+    //makes inputVal lowercase
     var lowerInput = inputVal.toLowerCase();
+
+    //duplicate counter
     var x = 0;
 
-
-    //Count of x increases with dublicate
     clientSaved.forEach(client => {
-        client = client.toLowerCase();
-        if (client == lowerInput) {
 
-            x = x + 1;
+        console.log(client)
+        //makes client names lowercase
+        var lowClient = client.toLowerCase();
+
+        if (lowClient == lowerInput) {
+            console.log("They're the same")
+            x += 1;
         }
         else {
-
+            console.log("They're different")
         }
     });
 
     if (x == 0) {
         addName(inputVal);
+        createObject(inputVal);
     }
     else {
-        return;
     }
-
 }
 
 function addName(inputVal) {
+    //Add to clientSaved array
     clientSaved.push(inputVal);
 
     //Adds to client dropdown
-    $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
+    $("#clientDropdown").prepend(`<a class="dropdown-item active" index=${clientSaved.length - 1} id= "dropdown-button" data-id=${clientSaved.length - 1} href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
-    // Adds to client filter
-    // $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-    // $("input").val("");
 
-
+    //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
+}
+
+
+function createObject(inputVal) {
+
+    obj.client.push({
+        ID: inputVal,
+        startTime: [], stopTime:[], totalTime:[], cost: 00
+    })
+
+    localStorage.setItem("objectClient", JSON.stringify(obj))
 }

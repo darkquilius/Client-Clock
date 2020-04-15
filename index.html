@@ -14,7 +14,7 @@
     <!-- CUSTOM STYLESHEETS -->
     <link rel="stylesheet" media="print" type="text/css" href="assets/css/print.css" />
     <link rel="stylesheet" media="screen" type="text/css" href="assets/css/style.css" />
-    
+
 
     <!-- DOCUMENT -->
     <title>Client Clock</title>
@@ -26,6 +26,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-blue bg-blue" id="nav">
         <span class="navbar-brand mb-0 h1">Client Clock <i class="far fa-clock"></i></span>
+        <span class="navbar-brand mb-0 h1" id="spanRight"></span>
     </nav>
     <br>
 
@@ -72,7 +73,7 @@
                     <label for="billingrate">Billing Rate $/hr</label>
                     <input type="text" id="billingrate" name="billingrate">
                     </button>
-                    <button class="btn btn-secondary" id="printBtn" type="button" >Print Invoice</button>
+                    <button class="btn btn-secondary" id="printBtn" type="button">Print Invoice</button>
 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="clientList">
 
@@ -100,14 +101,12 @@
                                 <td>$1,234.56</td>
                                 <td>4:31PM - 5:34PM</td>
                             </tr>
-
                             <tr>
                                 <td>Example Client 2</td>
                                 <td>36 minutes</td>
                                 <td>$789.00</td>
                                 <td>2:45PM - 3:56PM</td>
                             </tr>
-
                             <tr class="table-success">
                                 <td>Total:</td>
                                 <td>2 hours 10 minutes</td>
