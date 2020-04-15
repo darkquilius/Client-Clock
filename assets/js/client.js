@@ -30,6 +30,7 @@ function priorClient() {
         clientSaved.forEach(client => {
             $("#clientDropdown").prepend(`<a class="dropdown-item" index=${index} data-id=${index} href="#">${client}</a>`);
             $("#currentClient").text(client);
+            $("input").val("");
 
             index++;
         });
@@ -87,7 +88,9 @@ function addName(inputVal) {
 
     //Adds to client dropdown
     $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#"></a>`);
+    $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
+    $("input").val("");
 
     //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));

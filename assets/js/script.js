@@ -56,7 +56,7 @@ start.addEventListener("click", function() {
     /* Stop button */
     stop.addEventListener("click", function() {
         clearTimeout(t);
-        calcTotalTime();
+        // calcTotalTime();
         var timestamp = moment().format("L, h:mm:ss");
         $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p><br>`);
 
@@ -89,43 +89,19 @@ start.addEventListener("click", function() {
     }
 });
 
-
 // Sets local storage and parses time for table. local storage to be used in recal of client time
+
+
+
 function calcTotalTime() {
     timeToSeconds();
-    var clientTime = JSON.stringify(seconds);
-    // localStorage.setItem(clientName, clientTime);
-    // console.log(localStorage.getItem("client 1"));
-    secondsToTime();
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+    a.client[0].totalTime += seconds
+    console.log(a)
+    console.log(a.client[0].totalTime)
+    localStorage.setItem("objectClient", JSON.stringify(a))
+        // secondsToTime();
 }
-
-/* 
-https://stackoverflow.com/questions/17684201/create-html-table-from-javascript-object/17684427
-Example:
-var allEntries = 
-[
-    {
-        "client": "Connie",
-        "hours": "1.2",
-        "cost": "1233.23"
-        "startTime": "12385734"
-        "stopTime": "12385737"
-     },
-    {
-        "client": "Andrew",
-        "hours": "0.3",
-        "cost": "346.23"
-        "startTime": "12385723"
-        "stopTime": "12385767"
-     } 
-]
-*/
-
-function createEntry() {
-
-
-}
-
 
 /* CONVERSION OF TIME */
 
@@ -155,15 +131,3 @@ span();
 function span() {
     document.getElementById('spanRight').innerHTML = date;
 }
-// Add Button and function
-
-// $(document).on("keypress", "input", function (e) {
-//     if (e.which == 13) {
-//         var inputVal = $(this).val();
-//         // Adds to client dropdown
-//         $("#clientDropdown").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-//         $("#currentClient").text(inputVal);
-//         // Adds to client filter
-//         $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
-//     }
-// });
