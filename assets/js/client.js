@@ -34,9 +34,26 @@ function priorClient() {
 
             index++;
         });
+
     }
 }
 
+// Get all buttons with class="btn" inside the container
+var btns = document.querySelectorAll(".dropdown-item")
+
+for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+
+        // If there's no active class
+        if (current.length > 0) {
+            current[0].className = current[0].className.replace(" active", "");
+        }
+
+        // Add the active class to the current/clicked button
+        this.className += " active";
+    });
+}
 
 // When client is entered into input, add to dropdown
 $(document).on("keypress", "input", function(e) {
@@ -96,7 +113,7 @@ function addName(inputVal) {
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
 }
 
-
+// this only works when you make a new input
 function createObject(inputVal) {
 
     obj.client.push({

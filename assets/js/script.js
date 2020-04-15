@@ -50,7 +50,7 @@ start.addEventListener("click", function() {
     var entry = {};
     entry.client = currentClientText;
     entry.startTime = moment().valueOf();
-    console.log(entry);
+    // console.log(entry);
 
 
     /* Stop button */
@@ -62,7 +62,7 @@ start.addEventListener("click", function() {
 
         // Add stopTime property to entry object
         entry.stopTime = moment().valueOf();
-        console.log(entry);
+        // console.log(entry);
 
     })
 
@@ -75,7 +75,7 @@ start.addEventListener("click", function() {
 
         // Add new entry object to allEntries array on Save
         allEntries.push(entry);
-        console.log(allEntries);
+        // console.log(allEntries);
 
         populateTable();
 
@@ -96,11 +96,21 @@ start.addEventListener("click", function() {
 function calcTotalTime() {
     timeToSeconds();
     var a = JSON.parse(localStorage.getItem("objectClient"));
-    a.client[0].totalTime += seconds
-    console.log(a)
-    console.log(a.client[0].totalTime)
-    localStorage.setItem("objectClient", JSON.stringify(a))
-        // secondsToTime();
+    var active = document.getElementsByClassName("dropdown-item active").innerHTML
+
+    var stu = $(".active").text()
+    console.log(stu)
+
+    //saves client name
+    console.log(active);
+    console.log(a);
+    // saves seconds in object
+    // var a = JSON.parse(localStorage.getItem("objectClient"));
+    // a.client[0].totalTime += seconds
+    // console.log(a)
+    // console.log(a.client[0].totalTime)
+    // localStorage.setItem("objectClient", JSON.stringify(a))
+    // secondsToTime();
 }
 
 /* CONVERSION OF TIME */
