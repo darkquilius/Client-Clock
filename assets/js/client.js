@@ -33,6 +33,7 @@ function priorClient() {
 
             index++;
         });
+        boogaBooga()
     }
 }
 
@@ -53,7 +54,6 @@ for (var i = 0; i < btns.length; i++) {
     });
 }
 
-
 // When client is entered into input, add to dropdown
 $(document).on("keypress", "input", function(e) {
     if (e.which == 13) {
@@ -61,7 +61,7 @@ $(document).on("keypress", "input", function(e) {
 
         //Checks for dublicates
         dublicateCheck(inputVal);
-
+        boogaBooga()
     }
 });
 
@@ -103,12 +103,21 @@ function addName(inputVal) {
     clientSaved.push(inputVal);
 
     //Adds to client dropdown
-    $("#clientDropdown").prepend(`<a class="dropdown-item active" index=${clientSaved.length - 1} id= "dropdown-button" data-id=${clientSaved.length - 1} href="#">${inputVal}</a>`);
+    $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
     $("input").val("")
 
     //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
+    boogaBooga()
+}
+
+function boogaBooga() {
+    var a = document.getElementById("clientDropdown").children
+    var b = a[0].setAttribute("class", "dropdown-item active")
+    a[1].setAttribute("class", "dropdown-item")
+    console.log(a)
+    console.log(b)
 }
 
 
