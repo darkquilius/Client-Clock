@@ -2,6 +2,22 @@ nav{
     background-color:rgb(92, 222, 255);
     font-family: 'Permanent Marker', cursive;
 font-family: 'Lemon', cursive;
-    border-bottom: solid;
+border-bottom: solid;
     
+}
+
+#inv  {
+    display: none;
+}
+
+.noDisp   {
+    display: none;
+}
+
+#printBtn   {
+    float: right;
+}
+
+#spanRight  {
+    float: right;
 }
