@@ -9,7 +9,7 @@ function populateTable() {
 
     console.log(startStamp)
     console.log(stopStamp)
-
+    3
     // var newRow = $("tbody").append(`<tr></tr>`);
 
     // var currentClient = $(".active").text();
