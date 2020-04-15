@@ -11,7 +11,8 @@ function populateTable() {
     newRow.append(`<td>${hours} hours ${minutes} minutes</td>`);
  
     // Cost column
-    newRow.append(`<td>Cost</td>`);
+    newRow.append(`<td>hours</td>`);
+    
 
     // Time column
     var startTime = moment(allEntries[allEntries.length - 1].startTime).format("h:mm:ss");
