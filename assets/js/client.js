@@ -30,11 +30,9 @@ function priorClient() {
         clientSaved.forEach(client => {
             $("#clientDropdown").prepend(`<a class="dropdown-item" index=${index} data-id=${index} href="#">${client}</a>`);
             $("#currentClient").text(client);
-            $("input").val("");
 
             index++;
         });
-
     }
 }
 
@@ -54,6 +52,7 @@ for (var i = 0; i < btns.length; i++) {
         this.className += " active";
     });
 }
+
 
 // When client is entered into input, add to dropdown
 $(document).on("keypress", "input", function(e) {
@@ -104,22 +103,21 @@ function addName(inputVal) {
     clientSaved.push(inputVal);
 
     //Adds to client dropdown
-    $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#"></a>`);
-    $("#clientList").prepend(`<a class="dropdown-item" href="#">${inputVal}</a>`);
+    $("#clientDropdown").prepend(`<a class="dropdown-item active" index=${clientSaved.length - 1} id= "dropdown-button" data-id=${clientSaved.length - 1} href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
-    $("input").val("");
+    $("input").val("")
 
     //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
 }
 
-// this only works when you make a new input
+
 function createObject(inputVal) {
 
     obj.client.push({
         ID: inputVal,
-        startTime: 00,
-        stopTime: 00,
+        startTime: [],
+        stopTime: [],
         totalTime: 00,
         cost: 00
     })

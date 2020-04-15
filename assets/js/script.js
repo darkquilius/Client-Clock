@@ -51,44 +51,43 @@ start.addEventListener("click", function() {
     entry.client = currentClientText;
     entry.startTime = moment().valueOf();
     // console.log(entry);
+})
 
 
-    /* Stop button */
-    stop.addEventListener("click", function() {
-        clearTimeout(t);
-        // calcTotalTime();
-        var timestamp = moment().format("L, h:mm:ss");
-        $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p><br>`);
+/* Stop button */
+stop.addEventListener("click", function() {
+    clearTimeout(t);
+    // calcTotalTime();
+    var timestamp = moment().format("L, h:mm:ss");
+    $("#timestampSlot").append(`<p>Stop Timestamp: ${timestamp}</p><br>`);
 
-        // Add stopTime property to entry object
-        entry.stopTime = moment().valueOf();
-        // console.log(entry);
+    // Add stopTime property to entry object
+    // entry.stopTime = moment().valueOf();
+    // console.log(entry);
 
-    })
+})
 
 
-    /* ON SAVE */
+/* ON SAVE */
 
-    /* Clear/Reset/Save button */
-    save.onclick = function() {
-        calcTotalTime();
+/* Clear/Reset/Save button */
+save.onclick = function() {
+    calcTotalTime();
 
-        // Add new entry object to allEntries array on Save
-        allEntries.push(entry);
-        // console.log(allEntries);
+    // Add new entry object to allEntries array on Save
+    // allEntries.push(entry);
+    // console.log(allEntries);
 
-        populateTable();
+    populateTable();
 
-        h1.textContent = "00:00:00";
-        seconds = 0;
-        minutes = 0;
-        hours = 0;
+    h1.textContent = "00:00:00";
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
 
-        clearTimeout(t);
-        $("#timestampSlot").empty();
-    }
-});
-
+    clearTimeout(t);
+    $("#timestampSlot").empty();
+};
 // Sets local storage and parses time for table. local storage to be used in recal of client time
 
 
@@ -96,21 +95,19 @@ start.addEventListener("click", function() {
 function calcTotalTime() {
     timeToSeconds();
     var a = JSON.parse(localStorage.getItem("objectClient"));
-    var active = document.getElementsByClassName("dropdown-item active").innerHTML
 
-    var stu = $(".active").text()
-    console.log(stu)
+    var stu = $(".active").val("index")
+        // var stu = $(".active").val("data-id")
 
     //saves client name
-    console.log(active);
+    console.log(stu)
     console.log(a);
     // saves seconds in object
-    // var a = JSON.parse(localStorage.getItem("objectClient"));
-    // a.client[0].totalTime += seconds
-    // console.log(a)
-    // console.log(a.client[0].totalTime)
-    // localStorage.setItem("objectClient", JSON.stringify(a))
-    // secondsToTime();
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+    a.client[0].totalTime += seconds
+    console.log(a.client[0].totalTime)
+    localStorage.setItem("objectClient", JSON.stringify(a))
+    secondsToTime();
 }
 
 /* CONVERSION OF TIME */
@@ -125,7 +122,9 @@ function timeToSeconds() {
 
 // Returns seconds to legible time
 function secondsToTime() {
-    var baseNum = localStorage.getItem("client 1");
+
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+    var baseNum = a.client[0].totalTime
     baseNum = parseInt(baseNum);
     hours = Math.floor(baseNum / 60 / 60);
     minutes = Math.floor((baseNum / 60) - (hours * 60));
