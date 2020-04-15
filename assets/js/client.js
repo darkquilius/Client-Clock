@@ -90,7 +90,7 @@ function addName(inputVal) {
     clientSaved.push(inputVal);
 
     //Adds to client dropdown
-    $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#"></a>`);
+    $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
 
     //Saves to Storage
