@@ -7,7 +7,6 @@ var h1 = document.getElementById("clock"),
     hours = 0,
     t,
     date = moment().format('ll');
-allEntries = [];
 
 
 /* TIMER */
@@ -35,59 +34,62 @@ function timer() {
 
 /* BUTTONS */
 /* Start button */
-start.addEventListener("click", function() {
+start.addEventListener("click", function(event) {
         timer();
 
-        var activeIndex = $(".active").attr("data-id")
+        var activeIndex = parseInt($(".active").attr("index"))
         var a = JSON.parse(localStorage.getItem("objectClient"));
         var timestamp = moment().format("L, h:mm:ss");
-        a.client[activeIndex].startTime.push(timestamp);
+        a.client[activeIndex].startTime.push(timestamp)
+            // console.log(a.client[activeIndex])
+            // a.client[activeIndex].startTime.push(timestamp);
         localStorage.setItem("objectClient", JSON.stringify(a));
 
         $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
-
-        /* Stop button */
-        stop.addEventListener("click", function() {
-            clearTimeout(t);
-            var activeIndex = $(".active").attr("data-id")
-            var a = JSON.parse(localStorage.getItem("objectClient"));
-            var timestamp = moment().format("L, h:mm:ss");
-            a.client[activeIndex].stopTime.push(timestamp);
-            localStorage.setItem("objectClient", JSON.stringify(a))
-
-            $("#timestampSlot").append(`<div>Stop Time: ${timestamp}`)
-        })
-
-        /* ON SAVE */
-
-        /* Clear/Reset/Save button */
-        save.onclick = function() {
-            calcTotalTime();
-
-
-            populateTable();
-
-            h1.textContent = "00:00:00";
-            seconds = 0;
-            minutes = 0;
-            hours = 0;
-
-            clearTimeout(t);
-            $("#timestampSlot").empty();
-        };
-
     })
-    // Sets local storage and parses time for table. local storage to be used in recal of client time
+    /* Stop button */
+stop.addEventListener("click", function(event) {
+    clearTimeout(t);
+
+    var activeIndex = parseInt($(".active").attr("data-id"))
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+    var timestamp = moment().format("L, h:mm:ss");
+    a.client[activeIndex].stopTime.push(timestamp);
+    localStorage.setItem("objectClient", JSON.stringify(a))
+
+    $("#timestampSlot").append(`<div>Stop Time: ${timestamp}`)
+})
+
+/* ON SAVE */
+
+/* Clear/Reset/Save button */
+save.onclick = function(event) {
+    calcTotalTime();
+
+
+    // populateTable();
+
+    h1.textContent = "00:00:00";
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+
+    clearTimeout(t);
+    $("#timestampSlot").empty();
+};
+
+
+// Sets local storage and parses time for table. local storage to be used in recal of client time
 
 
 function calcTotalTime() {
     timeToSeconds();
-    var activeIndex = $(".active").attr("data-id")
+    var activeIndex = parseInt($(".active").attr("data-id"))
     var a = JSON.parse(localStorage.getItem("objectClient"));
     console.log(activeIndex)
         // saves seconds in object
-    a.client[activeIndex].totalTime += seconds
-    console.log(a.client[0].totalTime)
+    a.client[0].totalTime += seconds
+    console.log(a.client[activeIndex].totalTime)
     console.log(a)
     localStorage.setItem("objectClient", JSON.stringify(a))
     secondsToTime();
