@@ -149,3 +149,6 @@ function repopArray() {
     var a = JSON.parse(localStorage.getItem("objectClient"));
 
 }
+
+
+JSON.parse(localStorage.getItem("objectClient"))[0]
