@@ -1,14 +1,14 @@
 /* Client Dropdown Functionality */
 //Prior client name array
 var clientSaved = [];
-const obj = {
-    client: []
-};
+var obj = [];
+
 
 
 //Populates prior client names
 
 priorClient();
+populateObjectArray();
 
 function priorClient() {
 
@@ -33,7 +33,7 @@ function priorClient() {
 
             index++;
         });
-        boogaBooga()
+        // boogaBooga()
     }
 }
 
@@ -61,7 +61,7 @@ $(document).on("keypress", "input", function(e) {
 
         //Checks for dublicates
         dublicateCheck(inputVal);
-        boogaBooga()
+        boogaBooga();
     }
 });
 
@@ -77,6 +77,8 @@ function dublicateCheck(inputVal) {
 
     //duplicate counter
     var x = 0;
+
+
 
     clientSaved.forEach(client => {
 
@@ -109,7 +111,8 @@ function addName(inputVal) {
 
     //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
-    boogaBooga()
+    boogaBooga();
+    populateObjectArray()
 }
 
 function boogaBooga() {
@@ -120,10 +123,9 @@ function boogaBooga() {
     console.log(b)
 }
 
-
 function createObject(inputVal) {
 
-    obj.client.push({
+    obj.push({
         ID: inputVal,
         startTime: [],
         stopTime: [],
@@ -132,4 +134,14 @@ function createObject(inputVal) {
     })
 
     localStorage.setItem("objectClient", JSON.stringify(obj))
+}
+
+function populateObjectArray() {
+    var prev = JSON.parse(localStorage.getItem("objectClient"));
+
+    if (prev == null) {
+        obj = []
+    } else {
+        obj = prev
+    }
 }
