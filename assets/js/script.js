@@ -34,28 +34,48 @@ function timer() {
 
 /* BUTTONS */
 /* Start button */
-start.addEventListener("click", function(event) {
+
+
+//Just convert the objects to JSON strings:
+
+// localStorage.setItem("savedData", JSON.stringify(objects));
+// And vice versa:
+
+// objects = JSON.parse(localStorage.getItem("savedData")));
+// Or you can add multiple objects in the same localStorage value:
+
+// localStorage.setItem("savedData", JSON.stringify([object1, object2 /*, etc*/]));
+// object1 = JSON.parse(localStorage.getItem("savedData"))[0];
+// object2 = JSON.parse(localStorage.getItem("savedData"))[1];
+
+
+start.addEventListener("click", function() {
         timer();
+
 
         var activeIndex = parseInt($(".active").attr("index"))
         var a = JSON.parse(localStorage.getItem("objectClient"));
         var timestamp = moment().format("L, h:mm:ss");
-        a.client[activeIndex].startTime.push(timestamp)
-            // console.log(a.client[activeIndex])
-            // a.client[activeIndex].startTime.push(timestamp);
+        a[activeIndex].startTime.push(timestamp)
+            // console.log(a)
+
         localStorage.setItem("objectClient", JSON.stringify(a));
+        // console.log(a)
 
         $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
     })
     /* Stop button */
-stop.addEventListener("click", function(event) {
+stop.addEventListener("click", function() {
     clearTimeout(t);
 
-    var activeIndex = parseInt($(".active").attr("data-id"))
+    var activeIndex = parseInt($(".active").attr("index"))
     var a = JSON.parse(localStorage.getItem("objectClient"));
+    console.log(a)
     var timestamp = moment().format("L, h:mm:ss");
-    a.client[activeIndex].stopTime.push(timestamp);
+    a[activeIndex].stopTime.push(timestamp);
+    console.log(a)
     localStorage.setItem("objectClient", JSON.stringify(a))
+    console.log(a)
 
     $("#timestampSlot").append(`<div>Stop Time: ${timestamp}`)
 })
@@ -63,7 +83,7 @@ stop.addEventListener("click", function(event) {
 /* ON SAVE */
 
 /* Clear/Reset/Save button */
-save.onclick = function(event) {
+save.onclick = function() {
     calcTotalTime();
 
 
@@ -84,12 +104,11 @@ save.onclick = function(event) {
 
 function calcTotalTime() {
     timeToSeconds();
-    var activeIndex = parseInt($(".active").attr("data-id"))
+    var activeIndex = parseInt($(".active").attr("index"))
     var a = JSON.parse(localStorage.getItem("objectClient"));
-    console.log(activeIndex)
-        // saves seconds in object
-    a.client[0].totalTime += seconds
-    console.log(a.client[activeIndex].totalTime)
+    // saves seconds in object
+    a[activeIndex].totalTime += seconds
+    console.log(a[activeIndex].totalTime)
     console.log(a)
     localStorage.setItem("objectClient", JSON.stringify(a))
     secondsToTime();
@@ -107,8 +126,9 @@ function timeToSeconds() {
 
 // Returns seconds to legible time
 function secondsToTime() {
+    var activeIndex = parseInt($(".active").attr("data-id"))
     var a = JSON.parse(localStorage.getItem("objectClient"));
-    var baseNum = a.client[0].totalTime;
+    var baseNum = a[activeIndex].totalTime;
     hours = Math.floor(baseNum / 60 / 60);
     minutes = Math.floor((baseNum / 60) - (hours * 60));
 }
@@ -122,4 +142,10 @@ span();
 
 function span() {
     document.getElementById('spanRight').innerHTML = date;
+}
+
+
+function repopArray() {
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+
 }
