@@ -150,3 +150,5 @@ function populateObjectArray() {
         obj = prev
     }
 }
+
+document.getElementById("clientDropdown").children[0].setAttribute("class", "dropdown-item active")
