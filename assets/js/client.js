@@ -38,7 +38,11 @@ function priorClient() {
 }
 
 // Get all buttons with class="btn" inside the container
-var btns = document.querySelectorAll(".dropdown-item")
+var btns = document.getElementsByClassName("dropdown-item")
+
+// function updateDropdownLength() {
+//     btnsLength = document.getElementsByClassName("dropdown-item").length
+// }
 
 for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
@@ -118,9 +122,10 @@ function addName(inputVal) {
 function boogaBooga() {
     var a = document.getElementById("clientDropdown").children
     var b = a[0].setAttribute("class", "dropdown-item active")
-    a[1].setAttribute("class", "dropdown-item")
-    console.log(a)
-    console.log(b)
+    for (let i = 1; i < clientSaved.length; i++) {
+        const element = a[i];
+        element.setAttribute("class", "dropdown-item")
+    }
 }
 
 function createObject(inputVal) {
