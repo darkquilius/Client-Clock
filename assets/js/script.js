@@ -58,28 +58,37 @@ function timer() {
 
 start.addEventListener("click", function() {
 
-        // Set Billing Rate Alert
         validateBillingRate()
 
         function validateBillingRate() {
             var x = document.getElementById('billingrate').value;
-            if (x == "") {
-                alert("Please Set Billing Rate");
-                return
-            }
 
-            timer();
-            var activeIndex = parseInt($(".active").attr("index"))
-            var a = JSON.parse(localStorage.getItem("objectClient"));
-            var timestamp = moment().format("L, h:mm:ss");
-            a[activeIndex].startTime.push(timestamp)
+            // If billingrate is empty
+            if (x == "") {
+                // Show billing error message
+                $("#billingerror").attr("style", "visibility: visible;");
+
+                // for 3 seconds
+                setInterval(function() {
+                    $("#billingerror").attr("style", "display: none;");
+                }, 3000);
+                return
+
+                // Otherwise, run timer and start functionality
+            } else {
+                timer();
+                var activeIndex = parseInt($(".active").attr("index"))
+                var a = JSON.parse(localStorage.getItem("objectClient"));
+                var timestamp = moment().format("L, h:mm:ss");
+                a[activeIndex].startTime.push(timestamp)
+                    // console.log(a)
+
+                localStorage.setItem("objectClient", JSON.stringify(a));
                 // console.log(a)
 
-            localStorage.setItem("objectClient", JSON.stringify(a));
-            // console.log(a)
+                $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
 
-            $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
-
+            }
         }
     })
     /* Stop button */
