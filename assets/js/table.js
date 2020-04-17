@@ -6,7 +6,6 @@ function populateTable() {
     var a = JSON.parse(localStorage.getItem("objectClient"));
     var startStamp = a.client[activeIndex].startTime[0]
     var stopStamp = a.client[activeIndex].stopTime[0]
-
     console.log(startStamp)
     console.log(stopStamp)
     3
@@ -18,7 +17,7 @@ function populateTable() {
     // newRow.append(`<td>${hours} hours ${minutes} minutes</td>`);
 
     // // Cost column
-    // newRow.append(`<td>Cost</td>`);
+    // newRow.append(`<td>${a[activeIndex].totalTime}</td>`);
 
     // // Time column
     // newRow.append(`<td>${startStamp} - ${stopStamp}</td>`);
@@ -26,13 +25,13 @@ function populateTable() {
 }
 
 
-// Billing rate keypress input
-$(document).on("keypress", "#billingrate", function(e) {
-    if (e.which == 13) {
-        var rate = $(this).val();
-        $(this).val(""); 
+// // Billing rate keypress input
+// $(document).on("keypress", "#billingrate", function(e) {
+//     if (e.which == 13) {
+//         rate = $(this).val();
+//         $(this).val(""); 
 
-        // Billing rate log
-        console.log("The billing rate is: $" + rate + "/hr");
-    }
-});
+//         // Billing rate log
+//         console.log("The billing rate is: $" + rate + "/hr");
+//     }
+// });
