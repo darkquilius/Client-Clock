@@ -64,32 +64,24 @@ start.addEventListener("click", function () {
         var x = document.getElementById('billingrate').value;
         if (x == "") {
             alert("Please Set Billing Rate");
-        } else {
-            if (startCount == 0) {
-                startCount += 1;
-
-                timer();
-                var activeIndex = parseInt($(".active").attr("index"))
-                var a = JSON.parse(localStorage.getItem("objectClient"));
-                var timestamp = moment().format("L, h:mm:ss");
-                a[activeIndex].startTime.push(timestamp)
-                // console.log(a)
-
-                localStorage.setItem("objectClient", JSON.stringify(a));
-                // console.log(a)
-
-                $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
-
-            } else {
-                alert("Start button already pushed")
-            }
         }
+
+        timer();
+        var activeIndex = parseInt($(".active").attr("index"))
+        var a = JSON.parse(localStorage.getItem("objectClient"));
+        var timestamp = moment().format("L, h:mm:ss");
+        a[activeIndex].startTime.push(timestamp)
+        // console.log(a)
+
+        localStorage.setItem("objectClient", JSON.stringify(a));
+        // console.log(a)
+
+        $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
+
     }
 })
 /* Stop button */
 stop.addEventListener("click", function () {
-    if (stopCount == 0) {
-        stopCount += 1;
         clearTimeout(t);
 
         var activeIndex = parseInt($(".active").attr("index"))
@@ -100,19 +92,12 @@ stop.addEventListener("click", function () {
         console.log(a)
 
         $("#timestampSlot").append(`<div>Stop Time: ${timestamp}`)
-    }
-    else {
-        alert("Stop button pushed, please hit save.")
-    }
 })
 
 /* ON SAVE */
 
 /* Clear/Reset/Save button */
 save.onclick = function () {
-    
-    console.log("im working")
-    if (startCount == 1 && stopCount == 1) {
         calcTotalTime();
 
 
@@ -126,9 +111,6 @@ save.onclick = function () {
         clearTimeout(t);
         $("#timestampSlot").empty();
 
-        // Clear Billing Rate
-        $("#billingrate").val("");
-    }
 };
 
 
@@ -148,7 +130,7 @@ function calcTotalTime() {
 
     //  Populate Table
     var newRow = $("tbody").append(`<tr></tr>`);
-    var totalCost = ((((a[activeIndex].totalTime) / 60) / 60) * a[activeIndex].cost).toFixed(2);
+    var totalCost = ((((seconds) / 60) / 60) * a[activeIndex].cost).toFixed(2);
     newRow.append(`<td>${a[activeIndex].ID}</td>`);
 
     newRow.append(`<td>${hours} hours ${minutes} minutes</td>`);
