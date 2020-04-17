@@ -8,18 +8,23 @@ var h1 = document.getElementById("clock"),
     t,
     date = moment().format('ll');
 
+//Click counters
+var startCount = 0;
+var stopCount = 0;
+
 // Billing rate keypress input
 $(document).on("keypress", "#billingrate", function(e) {
     if (e.which == 13) {
         rate = $(this).val();
-        // $(this).val("");
-        // var a = JSON.parse(localStorage.getItem("objectClient"));
-        // var activeIndex = parseInt($(".active").attr("index"));
-        // a[activeIndex].cost += rate; 
-        // localStorage.setItem("objectClient", JSON.parse(a))
+        var a = JSON.parse(localStorage.getItem("objectClient"));
+        var activeIndex = parseInt($(".active").attr("index"));
 
-        // Billing rate log
-        console.log("The billing rate is: $" + rate + "/hr");
+        a[activeIndex].cost = rate;
+
+        localStorage.setItem("objectClient", JSON.stringify(a));
+
+        $("#billingrate").innerHTML(rate);
+
     }
 });
 
@@ -51,43 +56,33 @@ function timer() {
 /* Start button */
 
 
-//Just convert the objects to JSON strings:
+start.addEventListener("click", function() {
 
-// localStorage.setItem("savedData", JSON.stringify(objects));
-// And vice versa:
+        // Set Billing Rate Alert
+        validateBillingRate()
 
-// objects = JSON.parse(localStorage.getItem("savedData")));
-// Or you can add multiple objects in the same localStorage value:
+        function validateBillingRate() {
+            var x = document.getElementById('billingrate').value;
+            if (x == "") {
+                alert("Please Set Billing Rate");
+                return
+            }
 
-// localStorage.setItem("savedData", JSON.stringify([object1, object2 /*, etc*/]));
-// object1 = JSON.parse(localStorage.getItem("savedData"))[0];
-// object2 = JSON.parse(localStorage.getItem("savedData"))[1];
+            timer();
+            var activeIndex = parseInt($(".active").attr("index"))
+            var a = JSON.parse(localStorage.getItem("objectClient"));
+            var timestamp = moment().format("L, h:mm:ss");
+            a[activeIndex].startTime.push(timestamp)
+                // console.log(a)
 
+            localStorage.setItem("objectClient", JSON.stringify(a));
+            // console.log(a)
 
-// Set Billing Rate Alert
-validateBillingRate()
+            $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
 
-function validateBillingRate() {
-    var x = document.getElementById('billingrate').value;
-    if (x == "") {
-        alert("Please Set Billing Rate");
-    }
-
-    timer();
-    var activeIndex = parseInt($(".active").attr("index"))
-    var a = JSON.parse(localStorage.getItem("objectClient"));
-    var timestamp = moment().format("L, h:mm:ss");
-    a[activeIndex].startTime.push(timestamp)
-        // console.log(a)
-
-    localStorage.setItem("objectClient", JSON.stringify(a));
-    // console.log(a)
-
-    $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
-
-}
-
-/* Stop button */
+        }
+    })
+    /* Stop button */
 stop.addEventListener("click", function() {
     clearTimeout(t);
 
@@ -118,9 +113,6 @@ save.onclick = function() {
     clearTimeout(t);
     $("#timestampSlot").empty();
 
-    // Clear Billing Rate
-    $("#billingrate").val("");
-
 };
 
 
@@ -136,11 +128,13 @@ function calcTotalTime() {
     console.log(a[activeIndex].totalTime)
     console.log(a)
     localStorage.setItem("objectClient", JSON.stringify(a))
-    secondsToTime();
+        // secondsToTime();
 
     //  Populate Table
-    var newRow = $("tbody").append(`<tr></tr>`);
-    var totalCost = ((((seconds) / 60) / 60) * a[activeIndex].cost).toFixed(2);
+    var startStamp = a[activeIndex].startTime[a[activeIndex].startTime.length - 1]
+    var stopStamp = a[activeIndex].stopTime[a[activeIndex].stopTime.length - 1]
+    var newRow = $("#currentTable").append(`<tr></tr>`);
+    var totalCost = ((((seconds / 60 / 60) + (minutes / 60) + hours) * a[activeIndex].cost).toFixed(2));
     newRow.append(`<td>${a[activeIndex].ID}</td>`);
 
     newRow.append(`<td>${hours} hours ${minutes} minutes</td>`);
@@ -149,7 +143,7 @@ function calcTotalTime() {
     newRow.append(`<td>$${totalCost}</td>`);
 
     // Time column
-    // newRow.append(`<td>${startStamp} - ${stopStamp}</td>`);
+    newRow.append(`<td>${startStamp} - ${stopStamp}</td>`);
 }
 
 /* CONVERSION OF TIME */
@@ -175,6 +169,11 @@ function secondsToTime() {
 $("#printBtn").on("click", function() {
     document.getElementById('inv').innerHTML = "Summary - " + date;
     window.print();
+})
+
+$("#totalBtn").on("click", function() {
+    populateTotalTable()
+    $("#totalTableHead").removeAttr("class");
 })
 
 // Set date in navbar

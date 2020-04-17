@@ -40,10 +40,6 @@ function priorClient() {
 // Get all buttons with class="btn" inside the container
 var btns = document.getElementsByClassName("dropdown-item")
 
-// function updateDropdownLength() {
-//     btnsLength = document.getElementsByClassName("dropdown-item").length
-// }
-
 for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
         var current = document.getElementsByClassName("active");

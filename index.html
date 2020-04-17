@@ -80,12 +80,10 @@
 
                 <!-- Billing Rate Input Field -->
                 <div>
-                    <!-- <label for="billingrate">Billing Rate $/hr</label>
-                    <input type="text" id="billingrate" name="billingrate"> -->
+                    <button class="btn btn-secondary" id="totalBtn" type="button">Totals Summary</button>
+                </div>
+                <div>
                     <button class="btn btn-secondary" id="printBtn" type="button">Print Summary</button>
-                    <!-- 
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="clientList">
-                    </div> -->
                 </div>
                 <br>
                 <br>
@@ -102,7 +100,39 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody id="currentTable">
+                            <!-- Clear code! Example only -->
+                            <!-- <tr>
+                                <td>Example Client</td>
+                                <td>1 hour 34 minutes</td>
+                                <td>$1,234.56</td>
+                                <td>4:31PM - 5:34PM</td>
+                            </tr>
+                            <tr>
+                                <td>Example Client 2</td>
+                                <td>36 minutes</td>
+                                <td>$789.00</td>
+                                <td>2:45PM - 3:56PM</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>Total:</td>
+                                <td>2 hours 10 minutes</td>
+                                <td>$2,023.56</td>
+                            </tr> -->
+
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered table-hover">
+                        <thead class="noDisp" id="totalTableHead">
+                            <tr class="table-active">
+                                <!-- Optional: can delete column names (leave scope) -->
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="totalTable">
                             <!-- Clear code! Example only -->
                             <!-- <tr>
                                 <td>Example Client</td>
