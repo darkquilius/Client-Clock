@@ -33,6 +33,7 @@ function priorClient() {
 
             index++;
         });
+        // boogaBooga()
     }
 }
 
@@ -44,7 +45,7 @@ var btns = document.getElementsByClassName("dropdown-item")
 // }
 
 for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
+    btns[i].addEventListener("click", function () {
         var current = document.getElementsByClassName("active");
 
         // If there's no active class
@@ -58,7 +59,7 @@ for (var i = 0; i < btns.length; i++) {
 }
 
 // When client is entered into input, add to dropdown
-$(document).on("keypress", "#client-input", function(e) {
+$(document).on("keypress", "#client-input", function (e) {
     if (e.which == 13) {
         var inputVal = $(this).val();
 
@@ -68,9 +69,16 @@ $(document).on("keypress", "#client-input", function(e) {
     }
 });
 
-// When item in dropdown is clicked, set dropdown button to event.innerText
-$(document).on('click', '.dropdown-menu a', function() {
+// When item in dropdown is clicked, set dropdown button to event.innerText, populate prior cost rate
+$(document).on('click', '.dropdown-menu a', function () {
     $("#currentClient").text(this.innerText);
+
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+    var activeIndex = parseInt($(".active").attr("index"));
+
+    var rate = a[activeIndex].cost
+
+    $("#billingrate").val(rate);
 });
 
 
@@ -81,6 +89,8 @@ function dublicateCheck(inputVal) {
     //duplicate counter
     var x = 0;
 
+
+
     clientSaved.forEach(client => {
 
         console.log(client)
@@ -90,8 +100,7 @@ function dublicateCheck(inputVal) {
         if (lowClient == lowerInput) {
             console.log("They're the same")
             x += 1;
-        }
-        else {
+        } else {
             console.log("They're different")
         }
     });
@@ -99,9 +108,7 @@ function dublicateCheck(inputVal) {
     if (x == 0) {
         addName(inputVal);
         createObject(inputVal);
-    }
-    else {
-    }
+    } else { }
 }
 
 function addName(inputVal) {
@@ -111,6 +118,7 @@ function addName(inputVal) {
     //Adds to client dropdown
     $("#clientDropdown").prepend(`<a class="dropdown-item" index=${clientSaved.length - 1} data-id=${clientSaved.length - 1} href="#">${inputVal}</a>`);
     $("#currentClient").text(inputVal);
+    $("input").val("")
 
     //Saves to Storage
     localStorage.setItem("clientName", JSON.stringify(clientSaved));
