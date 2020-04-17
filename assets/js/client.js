@@ -135,7 +135,7 @@ function createObject(inputVal) {
         startTime: [],
         stopTime: [],
         totalTime: 00,
-        cost: 00
+        cost: 0
     })
 
     localStorage.setItem("objectClient", JSON.stringify(obj))
