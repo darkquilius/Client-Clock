@@ -4,6 +4,7 @@ var clientSaved = [];
 var obj = [];
 
 
+
 //Populates prior client names
 
 priorClient();
@@ -37,17 +38,17 @@ function priorClient() {
 }
 
 // Get all buttons with class="btn" inside the container
-let btns = document.getElementsByClassName("dropdown-item")
+var btns = document.getElementsByClassName("dropdown-item")
 
 // function updateDropdownLength() {
-//     btns = document.getElementsByClassName("dropdown-item")
+//     btnsLength = document.getElementsByClassName("dropdown-item").length
 // }
 
 for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function () {
+    btns[i].addEventListener("click", function() {
         var current = document.getElementsByClassName("active");
 
-        // Erases active from currently active element
+        // If there's no active class
         if (current.length > 0) {
             current[0].className = current[0].className.replace(" active", "");
         }
@@ -58,7 +59,7 @@ for (var i = 0; i < btns.length; i++) {
 }
 
 // When client is entered into input, add to dropdown
-$(document).on("keypress", "#client-input", function (e) {
+$(document).on("keypress", "#client-input", function(e) {
     if (e.which == 13) {
         var inputVal = $(this).val();
 
@@ -68,16 +69,9 @@ $(document).on("keypress", "#client-input", function (e) {
     }
 });
 
-// When item in dropdown is clicked, set dropdown button to event.innerText, populate prior cost rate
-$(document).on('click', '.dropdown-menu a', function () {
+// When item in dropdown is clicked, set dropdown button to event.innerText
+$(document).on('click', '.dropdown-menu a', function() {
     $("#currentClient").text(this.innerText);
-
-    var a = JSON.parse(localStorage.getItem("objectClient"));
-    var activeIndex = parseInt($(".active").attr("index"));
-
-    var rate = a[activeIndex].cost
-
-    $("#billingrate").val(rate);
 });
 
 
@@ -93,7 +87,7 @@ function dublicateCheck(inputVal) {
     clientSaved.forEach(client => {
 
         console.log(client)
-        //makes client names lowercase
+            //makes client names lowercase
         var lowClient = client.toLowerCase();
 
         if (lowClient == lowerInput) {
@@ -107,7 +101,7 @@ function dublicateCheck(inputVal) {
     if (x == 0) {
         addName(inputVal);
         createObject(inputVal);
-    } else { }
+    } else {}
 }
 
 function addName(inputVal) {
