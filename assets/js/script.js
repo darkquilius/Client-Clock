@@ -110,6 +110,8 @@ stop.addEventListener("click", function () {
 
 /* Clear/Reset/Save button */
 save.onclick = function () {
+    
+    console.log("im working")
     if (startCount == 1 && stopCount == 1) {
         calcTotalTime();
 
