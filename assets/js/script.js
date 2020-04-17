@@ -8,17 +8,21 @@ var h1 = document.getElementById("clock"),
     t,
     date = moment().format('ll');
 
+//Click counters
+var startCount = 0;
+var stopCount = 0;
+
 // Billing rate keypress input
-$(document).on("keypress", "#billingrate", function(e) {
+$(document).on("keypress", "#billingrate", function (e) {
     if (e.which == 13) {
         rate = $(this).val();
         var a = JSON.parse(localStorage.getItem("objectClient"));
         var activeIndex = parseInt($(".active").attr("index"));
 
         a[activeIndex].cost = rate;
-         
+
         localStorage.setItem("objectClient", JSON.stringify(a));
-        
+
         $("#billingrate").innerHTML(rate);
 
     }
@@ -52,76 +56,77 @@ function timer() {
 /* Start button */
 
 
-//Just convert the objects to JSON strings:
+start.addEventListener("click", function () {
 
-// localStorage.setItem("savedData", JSON.stringify(objects));
-// And vice versa:
+    // Set Billing Rate Alert
+    validateBillingRate()
+    function validateBillingRate() {
+        var x = document.getElementById('billingrate').value;
+        if (x == "") {
+            alert("Please Set Billing Rate");
+        } else {
+            if (startCount == 0) {
+                startCount += 1;
 
-// objects = JSON.parse(localStorage.getItem("savedData")));
-// Or you can add multiple objects in the same localStorage value:
-
-// localStorage.setItem("savedData", JSON.stringify([object1, object2 /*, etc*/]));
-// object1 = JSON.parse(localStorage.getItem("savedData"))[0];
-// object2 = JSON.parse(localStorage.getItem("savedData"))[1];
-
-
-start.addEventListener("click", function() {
-        
-        // Set Billing Rate Alert
-        validateBillingRate()
-        function validateBillingRate() {
-            var x = document.getElementById('billingrate').value;
-            if (x == "") {
-              alert("Please Set Billing Rate");
-            } else {
                 timer();
-            var activeIndex = parseInt($(".active").attr("index"))
-            var a = JSON.parse(localStorage.getItem("objectClient"));
-            var timestamp = moment().format("L, h:mm:ss");
-            a[activeIndex].startTime.push(timestamp)
-            // console.log(a)
+                var activeIndex = parseInt($(".active").attr("index"))
+                var a = JSON.parse(localStorage.getItem("objectClient"));
+                var timestamp = moment().format("L, h:mm:ss");
+                a[activeIndex].startTime.push(timestamp)
+                // console.log(a)
 
-            localStorage.setItem("objectClient", JSON.stringify(a));
-            // console.log(a)
+                localStorage.setItem("objectClient", JSON.stringify(a));
+                // console.log(a)
 
-            $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
+                $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
+
+            } else {
+                alert("Start button already pushed")
+            }
         }
     }
 })
-    /* Stop button */
-stop.addEventListener("click", function() {
-    clearTimeout(t);
+/* Stop button */
+stop.addEventListener("click", function () {
+    if (stopCount == 0) {
+        stopCount += 1;
+        clearTimeout(t);
 
-    var activeIndex = parseInt($(".active").attr("index"))
-    var a = JSON.parse(localStorage.getItem("objectClient"));
-    var timestamp = moment().format("L, h:mm:ss");
-    a[activeIndex].stopTime.push(timestamp);
-    localStorage.setItem("objectClient", JSON.stringify(a))
-    console.log(a)
+        var activeIndex = parseInt($(".active").attr("index"))
+        var a = JSON.parse(localStorage.getItem("objectClient"));
+        var timestamp = moment().format("L, h:mm:ss");
+        a[activeIndex].stopTime.push(timestamp);
+        localStorage.setItem("objectClient", JSON.stringify(a))
+        console.log(a)
 
-    $("#timestampSlot").append(`<div>Stop Time: ${timestamp}`)
+        $("#timestampSlot").append(`<div>Stop Time: ${timestamp}`)
+    }
+    else {
+        alert("Stop button pushed, please hit save.")
+    }
 })
 
 /* ON SAVE */
 
 /* Clear/Reset/Save button */
-save.onclick = function() {
-    calcTotalTime();
+save.onclick = function () {
+    if (startCount == 1 && stopCount == 1) {
+        calcTotalTime();
 
 
-    // populateTable();
+        // populateTable();
 
-    h1.textContent = "00:00:00";
-    seconds = 0;
-    minutes = 0;
-    hours = 0;
+        h1.textContent = "00:00:00";
+        seconds = 0;
+        minutes = 0;
+        hours = 0;
 
-    clearTimeout(t);
-    $("#timestampSlot").empty();
+        clearTimeout(t);
+        $("#timestampSlot").empty();
 
-    // Clear Billing Rate
-    $("#billingrate").val("");
-
+        // Clear Billing Rate
+        $("#billingrate").val("");
+    }
 };
 
 
@@ -139,9 +144,9 @@ function calcTotalTime() {
     localStorage.setItem("objectClient", JSON.stringify(a))
     secondsToTime();
 
-//  Populate Table
+    //  Populate Table
     var newRow = $("tbody").append(`<tr></tr>`);
-    var totalCost = ((((a[activeIndex].totalTime) / 60) / 60) * rate).toFixed(2);
+    var totalCost = ((((a[activeIndex].totalTime) / 60) / 60) * a[activeIndex].cost).toFixed(2);
     newRow.append(`<td>${a[activeIndex].ID}</td>`);
 
     newRow.append(`<td>${hours} hours ${minutes} minutes</td>`);
@@ -173,7 +178,7 @@ function secondsToTime() {
 }
 
 // Print button invoice/print event
-$("#printBtn").on("click", function() {
+$("#printBtn").on("click", function () {
     document.getElementById('inv').innerHTML = "Summary - " + date;
     window.print();
 })
