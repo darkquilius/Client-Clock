@@ -5,6 +5,11 @@ nav {
     border-bottom: solid;
 }
 
+#billingerror {
+    color: red;
+    font-style: italic;
+}
+
 #inv {
     display: none;
 }
