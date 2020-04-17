@@ -33,7 +33,7 @@ function populateTotalTable() {
 
         // Cost column
         newRow.append(`<td>$${totalCost}</td>`);
-        newRow.append(`<td></td>`);
+
     }
 
     seconds = 0
