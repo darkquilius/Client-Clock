@@ -44,7 +44,7 @@ let btns = document.getElementsByClassName("dropdown-item")
 // }
 
 for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
+    btns[i].addEventListener("click", function () {
         var current = document.getElementsByClassName("active");
 
         // Erases active from currently active element
@@ -58,7 +58,7 @@ for (var i = 0; i < btns.length; i++) {
 }
 
 // When client is entered into input, add to dropdown
-$(document).on("keypress", "input", function(e) {
+$(document).on("keypress", "#client-input", function (e) {
     if (e.which == 13) {
         var inputVal = $(this).val();
 
@@ -68,9 +68,16 @@ $(document).on("keypress", "input", function(e) {
     }
 });
 
-// When item in dropdown is clicked, set dropdown button to event.innerText
-$(document).on('click', '.dropdown-menu a', function() {
+// When item in dropdown is clicked, set dropdown button to event.innerText, populate prior cost rate
+$(document).on('click', '.dropdown-menu a', function () {
     $("#currentClient").text(this.innerText);
+
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+    var activeIndex = parseInt($(".active").attr("index"));
+
+    var rate = a[activeIndex].cost
+
+    $("#billingrate").val(rate);
 });
 
 
@@ -86,7 +93,7 @@ function dublicateCheck(inputVal) {
     clientSaved.forEach(client => {
 
         console.log(client)
-            //makes client names lowercase
+        //makes client names lowercase
         var lowClient = client.toLowerCase();
 
         if (lowClient == lowerInput) {
@@ -100,7 +107,7 @@ function dublicateCheck(inputVal) {
     if (x == 0) {
         addName(inputVal);
         createObject(inputVal);
-    } else {}
+    } else { }
 }
 
 function addName(inputVal) {
@@ -134,7 +141,7 @@ function createObject(inputVal) {
         startTime: [],
         stopTime: [],
         totalTime: 00,
-        cost: 00
+        cost: 0
     })
 
     localStorage.setItem("objectClient", JSON.stringify(obj))

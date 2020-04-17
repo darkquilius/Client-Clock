@@ -54,6 +54,10 @@
                     </div>
                     <input id="client-input" type="text" placeholder="Client Name" class="form-control" aria-label="Text input with dropdown button">
                 </div>
+                <div>
+                    <label for="billingrate">Billing Rate $/hr</label>
+                    <input type="number" id="billingrate" name="billingrate">
+                </div>
                 <br>
                 <br>
 
@@ -75,16 +79,15 @@
             <section class="card-body" id="result">
 
                 <!-- Billing Rate Input Field -->
-                <div id="resultDropdown" class="dropdown">
-                    <label for="billingrate">Billing Rate $/hr</label>
-                    <input type="text" id="billingrate" name="billingrate">
-                    </button>
-                    <button class="btn btn-secondary" id="printBtn" type="button">Print Invoice</button>
-
+                <div>
+                    <!-- <label for="billingrate">Billing Rate $/hr</label>
+                    <input type="text" id="billingrate" name="billingrate"> -->
+                    <button class="btn btn-secondary" id="printBtn" type="button">Print Summary</button>
+<!-- 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="clientList">
-
-                    </div>
+                    </div> -->
                 </div>
+                <br>
                 <br>
 
                 <div class="container" id="currentDay">
@@ -126,9 +129,9 @@
 
         </div>
     </div>
-    <p class="noDisp"><b>Thank You For Your Business!</b></p>
+    <!-- <p class="noDisp"><b>Thank You For Your Business!</b></p>
     <br>
-    <p class="noDisp">Please submit payment within 30 days of recieving invoice</p>
+    <p class="noDisp">Please submit payment within 30 days of recieving invoice</p> -->
 
 
     <!-- EXTERNAL SCRIPTS -->
