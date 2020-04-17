@@ -133,13 +133,15 @@ function secondsToTime() {
     minutes = Math.floor((baseNum / 60) - (hours * 60));
 }
 
+// Print button invoice/print event
 $("#printBtn").on("click", function() {
     document.getElementById('inv').innerHTML = "INVOICE - " + date;
     window.print();
 })
 
+// Set date in navbar
 span();
-
+// Pull date for navbar
 function span() {
     document.getElementById('spanRight').innerHTML = date;
 }

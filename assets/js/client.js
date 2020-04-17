@@ -59,7 +59,7 @@ for (var i = 0; i < btns.length; i++) {
 }
 
 // When client is entered into input, add to dropdown
-$(document).on("keypress", "input", function(e) {
+$(document).on("keypress", "#client-input", function(e) {
     if (e.which == 13) {
         var inputVal = $(this).val();
 
