@@ -135,7 +135,7 @@ function secondsToTime() {
 
 // Print button invoice/print event
 $("#printBtn").on("click", function() {
-    document.getElementById('inv').innerHTML = "INVOICE - " + date;
+    document.getElementById('inv').innerHTML = "Summary - " + date;
     window.print();
 })
 
