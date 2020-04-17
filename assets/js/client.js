@@ -4,7 +4,6 @@ var clientSaved = [];
 var obj = [];
 
 
-
 //Populates prior client names
 
 priorClient();
@@ -38,17 +37,17 @@ function priorClient() {
 }
 
 // Get all buttons with class="btn" inside the container
-var btns = document.getElementsByClassName("dropdown-item")
+let btns = document.getElementsByClassName("dropdown-item")
 
 // function updateDropdownLength() {
-//     btnsLength = document.getElementsByClassName("dropdown-item").length
+//     btns = document.getElementsByClassName("dropdown-item")
 // }
 
 for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function() {
         var current = document.getElementsByClassName("active");
 
-        // If there's no active class
+        // Erases active from currently active element
         if (current.length > 0) {
             current[0].className = current[0].className.replace(" active", "");
         }
