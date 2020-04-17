@@ -64,31 +64,30 @@ function timer() {
 // object2 = JSON.parse(localStorage.getItem("savedData"))[1];
 
 
-start.addEventListener("click", function() {
+// Set Billing Rate Alert
+validateBillingRate()
 
-        // Set Billing Rate
-        validateBillingRate()
+function validateBillingRate() {
+    var x = document.getElementById('billingrate').value;
+    if (x == "") {
+        alert("Please Set Billing Rate");
+    }
 
-        function validateBillingRate() {
-            var x = document.getElementById('billingrate').value;
-            if (x == "") {
-                alert("Please Set Billing Rate");
-            } else {
-                timer();
-                var activeIndex = parseInt($(".active").attr("index"))
-                var a = JSON.parse(localStorage.getItem("objectClient"));
-                var timestamp = moment().format("L, h:mm:ss");
-                a[activeIndex].startTime.push(timestamp)
-                    // console.log(a)
+    timer();
+    var activeIndex = parseInt($(".active").attr("index"))
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+    var timestamp = moment().format("L, h:mm:ss");
+    a[activeIndex].startTime.push(timestamp)
+        // console.log(a)
 
-                localStorage.setItem("objectClient", JSON.stringify(a));
-                // console.log(a)
+    localStorage.setItem("objectClient", JSON.stringify(a));
+    // console.log(a)
 
-                $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
-            }
-        }
-    })
-    /* Stop button */
+    $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
+
+}
+
+/* Stop button */
 stop.addEventListener("click", function() {
     clearTimeout(t);
 
@@ -141,7 +140,7 @@ function calcTotalTime() {
 
     //  Populate Table
     var newRow = $("tbody").append(`<tr></tr>`);
-    var totalCost = ((((a[activeIndex].totalTime) / 60) / 60) * rate).toFixed(2);
+    var totalCost = ((((seconds) / 60) / 60) * a[activeIndex].cost).toFixed(2);
     newRow.append(`<td>${a[activeIndex].ID}</td>`);
 
     newRow.append(`<td>${hours} hours ${minutes} minutes</td>`);
