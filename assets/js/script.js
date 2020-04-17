@@ -8,9 +8,6 @@ var h1 = document.getElementById("clock"),
     t,
     date = moment().format('ll');
 
-//Click counters
-var startCount = 0;
-var stopCount = 0;
 
 // Billing rate keypress input
 $(document).on("keypress", "#billingrate", function (e) {
@@ -62,9 +59,19 @@ start.addEventListener("click", function () {
     validateBillingRate()
     function validateBillingRate() {
         var x = document.getElementById('billingrate').value;
+
+        // If billingrate is empty
         if (x == "") {
-            alert("Please Set Billing Rate");
-        }
+            // Show billing error message
+            $("#billingerror").attr("style", "visibility: visible;");
+            
+            // for 3 seconds
+            setInterval(function () {
+                $("#billingerror").attr("style", "display: none;");
+            }, 3000);
+        
+        // Otherwise, run timer and start functionality
+        } else {
 
         timer();
         var activeIndex = parseInt($(".active").attr("index"))
@@ -77,6 +84,7 @@ start.addEventListener("click", function () {
         // console.log(a)
 
         $("#timestampSlot").append(`<div>Start Time: ${timestamp}`)
+        }
 
     }
 })
