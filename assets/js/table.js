@@ -24,3 +24,15 @@ function populateTable() {
     // newRow.append(`<td>${startStamp} - ${stopStamp}</td>`);
 
 }
+
+
+// Billing rate keypress input
+$(document).on("keypress", "#billingrate", function(e) {
+    if (e.which == 13) {
+        var rate = $(this).val();
+        $(this).val(""); 
+
+        // Billing rate log
+        console.log("The billing rate is: $" + rate + "/hr");
+    }
+});
