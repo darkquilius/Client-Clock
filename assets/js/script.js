@@ -1,3 +1,4 @@
+  
 var h1 = document.getElementById("clock"),
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
@@ -27,23 +28,23 @@ $(document).on("keypress", "#billingrate", function(e) {
 /* TIMER */
 /* Add seconds to timer to make it run */
 function add() {
-    seconds++;
-    if (seconds >= 60) {
-        seconds = 0;
-        minutes++;
-        if (minutes >= 60) {
-            minutes = 0;
-            hours++;
-        }
+seconds++;
+if (seconds >= 60) {
+    seconds = 0;
+    minutes++;
+    if (minutes >= 60) {
+        minutes = 0;
+        hours++;
     }
+}
 
-    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
 
-    timer();
+timer();
 }
 
 function timer() {
-    t = setTimeout(add, 1000);
+t = setTimeout(add, 1000);
 }
 
 
@@ -123,7 +124,6 @@ save.onclick = function() {
 
 };
 
-
 // Sets local storage and parses time for table. local storage to be used in recal of client time
 
 
@@ -156,14 +156,15 @@ function calcTotalTime() {
 
 // Easy storing of seconds
 function timeToSeconds() {
-    minutes = (hours * 60) + minutes;
-    hours = 0;
-    seconds = (minutes * 60) + seconds;
-    minutes = 0
+minutes = (hours * 60) + minutes;
+hours = 0;
+seconds = (minutes * 60) + seconds;
+minutes = 0
 }
 
 // Returns seconds to legible time
 function secondsToTime() {
+
     var activeIndex = parseInt($(".active").attr("data-id"))
     var a = JSON.parse(localStorage.getItem("objectClient"));
     var baseNum = a[activeIndex].totalTime;
@@ -187,18 +188,32 @@ function span() {
 
 function repopArray() {
     var a = JSON.parse(localStorage.getItem("objectClient"));
-
-<<<<<<< HEAD
 }
 
 
 JSON.parse(localStorage.getItem("objectClient"))[0]
 
-=======
 $("#printBtn").on("click", function () {
     var date = moment().format('ll');
     document.getElementById('inv').innerHTML = "INVOICE - " + date;
     window.print();
 })
 // Add Button and function
->>>>>>> Fixing input
+
+var baseNum = localStorage.getItem("client 1");
+baseNum = parseInt(baseNum);
+hours = Math.floor(baseNum / 60 / 60);
+minutes = Math.floor((baseNum / 60) - (hours * 60));
+}
+
+$("#printBtn").on("click", function() {
+document.getElementById('inv').innerHTML = "INVOICE - " + date;
+window.print();
+})
+
+span();
+
+function span() {
+document.getElementById('spanRight').innerHTML = date;
+}
+
