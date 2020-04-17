@@ -137,7 +137,9 @@ function calcTotalTime() {
     console.log(a[activeIndex].totalTime)
     console.log(a)
     localStorage.setItem("objectClient", JSON.stringify(a))
-        // secondsToTime();
+
+    hours = Math.floor(seconds / 60 / 60)
+    minutes = Math.floor((seconds / 60) - (hours * 60))
 
     //  Populate Table
     var startStamp = a[activeIndex].startTime[a[activeIndex].startTime.length - 1]
