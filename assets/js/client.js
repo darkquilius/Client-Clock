@@ -68,6 +68,14 @@ $(document).on("keypress", "#client-input", function(e) {
 // When item in dropdown is clicked, set dropdown button to event.innerText
 $(document).on('click', '.dropdown-menu a', function() {
     $("#currentClient").text(this.innerText);
+
+    // Set obj.ID.cost
+    var a = JSON.parse(localStorage.getItem("objectClient"));
+    var billRate = $('#billingrate');
+    billRate.val("");
+    var thisId = $(this).data('id');
+    var thisIdCost = (a[thisId].cost);
+    billRate.val(billRate.val() + thisIdCost); 
 });
 
 
