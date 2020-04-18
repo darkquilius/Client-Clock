@@ -12,6 +12,6 @@
     border: 3px solid black;
 }
 
-#printBtn {
+#printBtn, #totalBtn    {
     display: none;
 }
