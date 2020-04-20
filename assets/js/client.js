@@ -62,6 +62,7 @@ $(document).on("keypress", "#client-input", function(e) {
         //Checks for dublicates
         dublicateCheck(inputVal);
         boogaBooga();
+        stockInfo(inputVal);
     }
 });
 
