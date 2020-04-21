@@ -36,7 +36,7 @@ THEN I am presented with a well-laid out summary of client name, my total time, 
 
 ## Wireframe & Sketch
 
-![Client Clock Wireframe](assets/images/group_project_1_wireframes-wireframe.jpg)
+![Client Clock Wireframe](assets/images/Group-Project-1-Wireframe.jpg)
 
 ## Technologies
 

@@ -5,6 +5,10 @@ nav {
     border-bottom: solid;
 }
 
+.mainBody {
+    font-family: 'Open Sans', sans-serif;
+}
+
 #billingerror {
     color: red;
     font-style: italic;
@@ -12,6 +16,19 @@ nav {
 
 #inv {
     display: none;
+}
+
+h5 {
+    margin: 12px 0;
+}
+
+#stockSymbol {
+    font-weight: 800;
+    color: blue;
+}
+
+.stockPrice {
+    margin: 5px 0;
 }
 
 .noDisp {
