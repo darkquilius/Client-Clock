@@ -9,7 +9,7 @@
     <!-- EXTERNAL LINKS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Lemon&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lemon&family=Permanent+Marker&family=Open+Sans&display=swap" rel="stylesheet">
 
     <!-- CUSTOM STYLESHEETS -->
     <link rel="stylesheet" media="print" type="text/css" href="assets/css/print.css" />
@@ -38,7 +38,7 @@
 
     <!-- MAIN BODY -->
     <h1 id="inv"></h1>
-    <div class="container">
+    <div class="container mainBody">
         <div class="row">
 
             <!-- Client/project add dropdown-->
@@ -79,9 +79,9 @@
 
                 <div>
                     <h5>Stock Information</h5>
-                    <h6>Stock Symbol: <span id="stockSymbol"></span></h6>
-                    <p>High: $<span id="dailyHigh"></span></p>
-                    <p>Low: $<span id="dailyLow"></span> </p>
+                    <p>Stock Symbol: <span id="stockSymbol"></span></p>
+                    <p class="stockPrice">Daily High: $<span id="dailyHigh"></span></p>
+                    <p class="stockPrice">Daily Low: $<span id="dailyLow"></span> </p>
                 </div>
 
             </section>
