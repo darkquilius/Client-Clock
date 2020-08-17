@@ -6,7 +6,7 @@
 
 This application is a system that will track the amount of time spent with specific clients or projects then use that information to create a billing page with hourly cost, total time, and total cost for the work done.
 
-The live page can be viewed here: https://kseredick95.github.io/Code-wizards/
+The live page can be viewed here: https://darkquilius.github.io/Code-wizards/
 
 
 ## User Story
