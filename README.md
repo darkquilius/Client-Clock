@@ -8,6 +8,9 @@ This application is a system that will track the amount of time spent with speci
 
 The live page can be viewed here: https://darkquilius.github.io/Code-wizards/
 
+## My Email:
+    andrew.c.reeves27@gmail.com
+
 
 ## User Story
 
